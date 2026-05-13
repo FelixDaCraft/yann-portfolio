@@ -138,7 +138,32 @@ if (!reduceMotion) {
 }
 
 // ============================================
-// 7. Sticky Pivot fade-in successive lines (BabyMonitor chapter 05)
+// 7a. Scenario chapters (chapter--scenario) — pivot-line reveal sans sticky-wrapper.
+// Même mise en forme que BabyMonitor, mais déclenchement par IntersectionObserver direct.
+// ============================================
+if (!reduceMotion) {
+  const scenIO = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-revealed");
+          scenIO.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4, rootMargin: "0px 0px -10% 0px" },
+  );
+  document
+    .querySelectorAll<HTMLElement>(".chapter--scenario .pivot-line")
+    .forEach((line) => scenIO.observe(line));
+} else {
+  document
+    .querySelectorAll<HTMLElement>(".chapter--scenario .pivot-line")
+    .forEach((line) => line.classList.add("is-revealed"));
+}
+
+// ============================================
+// 7b. Sticky Pivot fade-in successive lines (BabyMonitor chapter 05)
 // Le wrapper fait 300dvh, le chapter est sticky 100dvh.
 // Au scroll dans le wrapper, on révèle progressivement les 3 lignes.
 // ============================================
