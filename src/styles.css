@@ -383,8 +383,8 @@
   .chapter--dv .dv-stats {
     align-self: end;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 1.25rem;
     padding: 0 0 6rem;
     height: 60%;
     align-content: end;
@@ -426,7 +426,7 @@
     z-index: 2;
   }
   @media (max-width: 720px) {
-    .chapter--dv .dv-stats { grid-template-columns: repeat(3, 1fr); height: 50%; padding-bottom: 4rem; }
+    .chapter--dv .dv-stats { grid-template-columns: repeat(2, 1fr); height: 50%; padding-bottom: 4rem; gap: 1.5rem 1rem; }
   }
 
   /* ============================================
