@@ -326,10 +326,45 @@
     margin: 0;
     font-size: clamp(3rem, 10vw, 9rem);
   }
+  /* Portrait éditorial — petit carré N&B placé entre meta et word */
+  .chapter--neg .neg-portrait {
+    grid-column: 1; grid-row: 2;
+    align-self: end; justify-self: start;
+    margin: 0;
+    width: clamp(96px, 10vw, 140px);
+    aspect-ratio: 1 / 1;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .chapter--neg .neg-portrait img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
+    display: block;
+    mix-blend-mode: luminosity;
+    filter: contrast(1.1) brightness(0.92) saturate(0.25);
+    transition: filter 600ms var(--ease-out-expo), mix-blend-mode 0ms 600ms;
+  }
+  .chapter--neg .neg-portrait:hover img {
+    mix-blend-mode: normal;
+    filter: contrast(1.05) brightness(0.95) saturate(0.85);
+    transition: filter 700ms var(--ease-out-expo);
+  }
+  .chapter--neg .neg-portrait::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to top, rgba(212,168,83,0.15), transparent 50%);
+  }
+  .chapter--neg .neg-portrait figcaption {
+    position: absolute; bottom: -1.4rem; left: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-dim);
+    white-space: nowrap;
+  }
   @media (max-width: 720px) {
     .chapter--neg { grid-template-columns: 1fr; }
     .chapter--neg .chapter__num,
-    .chapter--neg .neg-meta { grid-column: 1; grid-row: auto; justify-self: start; text-align: left; }
+    .chapter--neg .neg-meta,
+    .chapter--neg .neg-portrait { grid-column: 1; grid-row: auto; justify-self: start; text-align: left; }
     .chapter--neg .neg-meta { font-size: 0.6rem; line-height: 1.8; }
     .chapter--neg .word { grid-column: 1; grid-row: auto; }
   }
@@ -348,7 +383,7 @@
   .chapter--dv .dv-stats {
     align-self: end;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0 1.5rem;
     padding: 0 0 6rem;
     height: 60%;
@@ -391,7 +426,7 @@
     z-index: 2;
   }
   @media (max-width: 720px) {
-    .chapter--dv .dv-stats { grid-template-columns: repeat(2, 1fr); height: 50%; padding-bottom: 4rem; }
+    .chapter--dv .dv-stats { grid-template-columns: repeat(3, 1fr); height: 50%; padding-bottom: 4rem; }
   }
 
   /* ============================================
@@ -517,6 +552,33 @@
     transition: border-color 200ms, color 200ms;
   }
   .project-meta a:hover { border-color: var(--amber); }
+
+  /* Stack logos — chips avec icône simple-icons CDN + nom */
+  .stack-logos {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    list-style: none; padding: 0; margin: 0.5rem 0 0;
+  }
+  .stack-logos li {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.04em;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 220ms, background 220ms, transform 220ms var(--ease-spring);
+  }
+  .stack-logos li:hover {
+    border-color: var(--platine);
+    background: rgba(192, 192, 200, 0.06);
+    transform: translateY(-1px);
+  }
+  .stack-logos img {
+    width: 14px; height: 14px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
 
   /* ============================================
      Composition Pivot — Sticky chapter (BabyMonitor 05)

@@ -68,7 +68,7 @@
 
   <main>
     <!-- ============================================ -->
-    <!-- 01 — Identité · Negative Space               -->
+    <!-- 01 — Identité · Negative Space + portrait    -->
     <!-- ============================================ -->
     <section class="chapter chapter--neg">
       <div class="chapter__num">01 · Identité</div>
@@ -79,6 +79,10 @@
         Next.js · TypeScript<br/>
         tRPC · Postgres · Docker
       </div>
+      <figure class="neg-portrait">
+        <img src="/yann.jpg" alt="Portrait de Yann Maillot" width="120" height="120" />
+        <figcaption>Yann · 2026</figcaption>
+      </figure>
       <h1 class="word">FREELANCE FULLSTACK.</h1>
     </section>
 
@@ -88,25 +92,20 @@
     <section class="chapter chapter--dv chapter--output">
       <div class="chapter__num">02 · Output</div>
       <div class="dv-stats" data-revealed="false">
-        <div class="dv-stat" style="--h: 0.85">
-          <div class="dv-bar"></div>
-          <div class="dv-val">SaaS</div>
-          <div class="dv-key">multi-tenant · tRPC + Stripe Connect</div>
-        </div>
         <div class="dv-stat" style="--h: 0.95">
           <div class="dv-bar"></div>
-          <div class="dv-val">PWA</div>
-          <div class="dv-key">reverse + ML · push iOS</div>
+          <div class="dv-val">CupMetrics</div>
+          <div class="dv-key">SaaS événementiel · multi-tenant · Stripe + 3D</div>
+        </div>
+        <div class="dv-stat" style="--h: 0.85">
+          <div class="dv-bar"></div>
+          <div class="dv-val">BabyMonitor</div>
+          <div class="dv-key">PWA · reverse caméra IP · ML embarqué</div>
         </div>
         <div class="dv-stat" style="--h: 0.7">
           <div class="dv-bar"></div>
-          <div class="dv-val">3D</div>
-          <div class="dv-key">Three.js · trophées · Stripe</div>
-        </div>
-        <div class="dv-stat" style="--h: 0.55">
-          <div class="dv-bar"></div>
-          <div class="dv-val">homelab</div>
-          <div class="dv-key">Docker · Cloudflare · auto-deploy</div>
+          <div class="dv-val">Ringdo</div>
+          <div class="dv-key">App Android · uploader appels · API IA</div>
         </div>
       </div>
       <h2 class="word platine">3 EN PROD.</h2>
@@ -124,8 +123,8 @@
         <dl class="terms">
           <div><dt>Format</dt><dd>Forfait ou T&amp;M</dd></div>
           <div><dt>Capacité</dt><dd>3 jours / semaine</dd></div>
-          <div><dt>Tarif</dt><dd>600 – 700 €/j HT</dd></div>
-          <div><dt>Prochain slot</dt><dd class="ok">14 juin 2026</dd></div>
+          <div><dt>Tarif</dt><dd>À discuter</dd></div>
+          <div><dt>Prochain slot</dt><dd>À discuter</dd></div>
           <div><dt>Démarrage</dt><dd>Kick-off 1 semaine</dd></div>
           <div><dt>Modalité</dt><dd>Remote · Nantes</dd></div>
         </dl>
@@ -133,18 +132,45 @@
     </section>
 
     <!-- Respiration A — Pentagram-style word-as-bg + astérisme + phrase italique -->
-    <aside class="respiration" aria-hidden="true" data-bg-word="TROIS">
+    <aside class="respiration" aria-hidden="true" data-bg-word="QUATRE">
       <div class="resp-ast">⁂</div>
-      <p class="resp-italic">Trois produits. Trois architectures. Trois preuves.</p>
+      <p class="resp-italic">Quatre projets. Quatre stacks. Quatre preuves.</p>
     </aside>
 
     <!-- ============================================ -->
-    <!-- 04 — BABYMONITOR (case 01 · MOT PIVOT · 200dvh) -->
-    <!-- "Wow first" : on commence par le proof technique le plus rare. -->
+    <!-- 04 — CupMetrics (case study · SaaS événementiel) -->
+    <!-- ============================================ -->
+    <section id="projects" class="chapter chapter--case">
+      <div class="chapter__num">04 · Case study 01</div>
+      <h2 class="word">CUPMETRICS.</h2>
+      <dl class="project-meta">
+        <div><dt>Type</dt><dd>SaaS événementiel — gestion de compétitions, jurys & visualisation 3D</dd></div>
+        <div><dt>Fonctionnalités</dt><dd>Espaces organisateurs / jurys / producteurs / sponsors, anonymisation des produits jugés (codes générés au paiement), paiements Stripe via webhook, génération PDF (react-pdf), e-mails transactionnels (Resend), trophées 3D R3F, dashboard temps réel.</dd></div>
+        <div><dt>Stack</dt><dd>
+          <ul class="stack-logos">
+            <li><img src="https://cdn.simpleicons.org/nextdotjs/c0c0c8" alt="" /> Next.js 15</li>
+            <li><img src="https://cdn.simpleicons.org/react/c0c0c8" alt="" /> React 19</li>
+            <li><img src="https://cdn.simpleicons.org/typescript/c0c0c8" alt="" /> TypeScript</li>
+            <li><img src="https://cdn.simpleicons.org/trpc/c0c0c8" alt="" /> tRPC</li>
+            <li><img src="https://cdn.simpleicons.org/drizzle/c0c0c8" alt="" /> Drizzle</li>
+            <li><img src="https://cdn.simpleicons.org/postgresql/c0c0c8" alt="" /> Postgres</li>
+            <li><img src="https://cdn.simpleicons.org/stripe/c0c0c8" alt="" /> Stripe</li>
+            <li><img src="https://cdn.simpleicons.org/threedotjs/c0c0c8" alt="" /> Three.js · R3F</li>
+            <li><img src="https://cdn.simpleicons.org/tailwindcss/c0c0c8" alt="" /> Tailwind</li>
+            <li><img src="https://cdn.simpleicons.org/radixui/c0c0c8" alt="" /> Radix UI</li>
+            <li><img src="https://cdn.simpleicons.org/docker/c0c0c8" alt="" /> Docker</li>
+          </ul>
+        </dd></div>
+        <div><dt>Vitrine live</dt><dd><a href="https://platinum.aynn.fr" target="_blank" rel="noopener" data-cursor="view">platinum.aynn.fr ↗</a> <span class="metric">(fork single-tenant déployé en prod)</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 05 — BABYMONITOR (case 02 · MOT PIVOT · 200dvh) -->
     <!-- ============================================ -->
     <div class="pivot-wrapper">
-      <section id="projects" class="chapter chapter--case chapter--pivot">
-        <div class="chapter__num">04 · Case study 01 · Pivot</div>
+      <section class="chapter chapter--case chapter--pivot">
+        <div class="chapter__num">05 · Case study 02 · Pivot</div>
         <h2 class="word">QUAND UN PROTOCOLE REFUSE DE PARLER.</h2>
         <div class="pivot-stack">
           <div class="pivot-line" data-line="0">
@@ -153,41 +179,70 @@
           </div>
           <div class="pivot-line" data-line="1">
             J'en ai fait <span class="em">BabyMonitor</span>, une PWA self-hostée pour surveiller mon bébé en temps réel,
-            avec <span class="em-sauge">détection ML des pleurs</span> (YAMNet TFLite) et push iOS qui perce le mode silencieux.
+            avec <span class="em-sauge">détection ML embarquée des pleurs</span> (YAMNet TFLite, classification audio AudioSet)
+            et push iOS qui perce le mode silencieux (ntfy en fallback).
           </div>
           <div class="pivot-line" data-line="2">
-            <span class="stack">Python · YAMNet · Node Express · go2rtc · better-sqlite3 · Web Push · ntfy · Docker · Traefik</span><br/>
-            Tourne sur mon homelab. Utilisé chaque nuit.
+            <ul class="stack-logos">
+              <li><img src="https://cdn.simpleicons.org/python/c0c0c8" alt="" /> Python</li>
+              <li><img src="https://cdn.simpleicons.org/tensorflow/c0c0c8" alt="" /> YAMNet TFLite</li>
+              <li><img src="https://cdn.simpleicons.org/nodedotjs/c0c0c8" alt="" /> Node Express</li>
+              <li><img src="https://cdn.simpleicons.org/sqlite/c0c0c8" alt="" /> better-sqlite3</li>
+              <li><img src="https://cdn.simpleicons.org/ffmpeg/c0c0c8" alt="" /> go2rtc · ffmpeg</li>
+              <li><img src="https://cdn.simpleicons.org/pwa/c0c0c8" alt="" /> PWA · Web Push</li>
+              <li><img src="https://cdn.simpleicons.org/docker/c0c0c8" alt="" /> Docker</li>
+              <li><img src="https://cdn.simpleicons.org/traefikproxy/c0c0c8" alt="" /> Traefik</li>
+            </ul>
+            <br/>Live · <a href="https://baby.aynn.fr" target="_blank" rel="noopener" data-cursor="view">baby.aynn.fr ↗</a> — utilisé chaque nuit, opéré sur mon homelab.
           </div>
         </div>
       </section>
     </div>
 
     <!-- ============================================ -->
-    <!-- 05 — CupMetrics (case 02 · crédibilité SaaS)  -->
+    <!-- 06 — Ringdo (case 03 · Android + backend IA)  -->
     <!-- ============================================ -->
     <section class="chapter chapter--case">
-      <div class="chapter__num">05 · Case study 02</div>
-      <h2 class="word">CUPMETRICS.</h2>
+      <div class="chapter__num">06 · Case study 03</div>
+      <h2 class="word">RINGDO.</h2>
       <dl class="project-meta">
-        <div><dt>Type</dt><dd>SaaS multi-tenant événementiel</dd></div>
-        <div><dt>Stack</dt><dd class="stack">Next.js 15 · tRPC v11 · Drizzle · Postgres · Better Auth · Stripe Connect</dd></div>
-        <div><dt>Statut</dt><dd class="metric">● Stripe Connect intégré · multi-tenant par sous-domaine</dd></div>
-        <div><dt>Détail</dt><dd>Plateforme de gestion d'événements pros — organisateurs, jurys, producteurs, sponsors. Routing sous-domaine, génération PDF, e-mails transactionnels.</dd></div>
+        <div><dt>Type</dt><dd>App Android native + backend de transcription assistée par IA</dd></div>
+        <div><dt>Fonctionnalités</dt><dd>Observer du file system Android sur le dossier d'enregistrements d'appels, upload sécurisé vers le backend (clé API), démarrage auto au boot, service persistent en arrière-plan. Côté serveur : transcription et résumé des appels via <span class="em">API IA</span> (Whisper + LLM).</dd></div>
+        <div><dt>Stack</dt><dd>
+          <ul class="stack-logos">
+            <li><img src="https://cdn.simpleicons.org/android/c0c0c8" alt="" /> Android natif</li>
+            <li><img src="https://cdn.simpleicons.org/openjdk/c0c0c8" alt="" /> Java</li>
+            <li><img src="https://cdn.simpleicons.org/nodedotjs/c0c0c8" alt="" /> Node API</li>
+            <li><img src="https://cdn.simpleicons.org/postgresql/c0c0c8" alt="" /> PostgreSQL</li>
+            <li><img src="https://cdn.simpleicons.org/openai/c0c0c8" alt="" /> OpenAI · Whisper</li>
+            <li><img src="https://cdn.simpleicons.org/anthropic/c0c0c8" alt="" /> Claude API</li>
+            <li><img src="https://cdn.simpleicons.org/docker/c0c0c8" alt="" /> Docker</li>
+          </ul>
+        </dd></div>
+        <div><dt>Backend</dt><dd><a href="https://ringdo.aynn.fr" target="_blank" rel="noopener" data-cursor="view">ringdo.aynn.fr ↗</a></dd></div>
       </dl>
     </section>
 
     <!-- ============================================ -->
-    <!-- 06 — Platinum CBD Cup (case 03 · vitrine live) -->
+    <!-- 07 — Psy (case 04 · client réel)              -->
     <!-- ============================================ -->
     <section class="chapter chapter--case">
-      <div class="chapter__num">06 · Case study 03</div>
-      <h2 class="word">PLATINUM CUP.</h2>
+      <div class="chapter__num">07 · Case study 04</div>
+      <h2 class="word">PSY.</h2>
       <dl class="project-meta">
-        <div><dt>Type</dt><dd>Fork standalone · 3D &amp; paiements</dd></div>
-        <div><dt>Stack</dt><dd class="stack">Next.js 15 · Three.js · R3F · Stripe · Postgres · Docker</dd></div>
-        <div><dt>Live</dt><dd><a href="https://platinum.aynn.fr" target="_blank" rel="noopener">platinum.aynn.fr ↗</a></dd></div>
-        <div><dt>Détail</dt><dd>Single-tenant. Trophées 3D R3F, paiements producteurs, espace jury. Auto-deploy via push git, Cloudflare Tunnel sur homelab.</dd></div>
+        <div><dt>Type</dt><dd>Site vitrine livré pour une psychologue indépendante</dd></div>
+        <div><dt>Fonctionnalités</dt><dd>Présentation des approches thérapeutiques, pages d'information par thématique (anxiété, deuil, accompagnement enfants…), formulaire de contact, prise de RDV, SEO local optimisé.</dd></div>
+        <div><dt>Stack</dt><dd>
+          <ul class="stack-logos">
+            <li><img src="https://cdn.simpleicons.org/nextdotjs/c0c0c8" alt="" /> Next.js</li>
+            <li><img src="https://cdn.simpleicons.org/react/c0c0c8" alt="" /> React</li>
+            <li><img src="https://cdn.simpleicons.org/typescript/c0c0c8" alt="" /> TypeScript</li>
+            <li><img src="https://cdn.simpleicons.org/tailwindcss/c0c0c8" alt="" /> Tailwind</li>
+            <li><img src="https://cdn.simpleicons.org/docker/c0c0c8" alt="" /> Docker</li>
+            <li><img src="https://cdn.simpleicons.org/cloudflare/c0c0c8" alt="" /> Cloudflare</li>
+          </ul>
+        </dd></div>
+        <div><dt>Live</dt><dd><a href="https://psy.aynn.fr" target="_blank" rel="noopener" data-cursor="view">psy.aynn.fr ↗</a></dd></div>
       </dl>
     </section>
 
@@ -197,32 +252,40 @@
     </aside>
 
     <!-- ============================================ -->
-    <!-- 07 — Path · Timeline Table (avec asso 2022-now) -->
+    <!-- 08 — Path · Timeline (parcours réel depuis 2016) -->
     <!-- ============================================ -->
     <section class="chapter chapter--tl">
-      <div class="chapter__num">07 · Path</div>
-      <h2 class="word">ACCENTURE → SOLO.</h2>
+      <div class="chapter__num">08 · Path</div>
+      <h2 class="word">10 ANS DE CRAFT.</h2>
       <table class="tech-table">
         <tr>
+          <td>2016 – 2018</td>
+          <td>Formations · <span class="stack">IPI</span> (cycle prépa info) → <span class="stack">Le 101</span> (piscine) → <span class="stack">Simplon.co</span> (dev web).</td>
+        </tr>
+        <tr>
+          <td>2019 – 2021</td>
+          <td>Stages & missions · <span class="stack">SQLI</span> (Java/JEE, Banque Postale) · <span class="stack">420 Green Road</span> (Prestashop e-commerce) · <span class="stack">Yunow / biinlab</span> (Symfony) · <span class="stack">Francecom</span> (Full-stack).</td>
+        </tr>
+        <tr>
           <td>2022 – 2023</td>
-          <td><span class="stack">Accenture · Salesforce Developer · Java/JEE</span> — projet client grand compte.</td>
+          <td><span class="stack">Accenture France</span> · Salesforce Developer · 1 an 3 mois sur projet grand compte (après formation Salesforce <span class="stack">WebForce3</span>).</td>
         </tr>
         <tr>
           <td>2022 → now</td>
-          <td>Co-fondateur de <a href="https://platinum.aynn.fr" target="_blank" rel="noopener">Platinum CBD</a> — asso loi 1901 qui organise Cann'Agri Expo &amp; Platinum CBD Cup.</td>
+          <td>Co-fondateur de <a href="https://platinum.aynn.fr" target="_blank" rel="noopener">Platinum CBD</a> — asso loi 1901 qui organise <strong>Cann'Agri Expo</strong> &amp; <strong>Platinum CBD Cup</strong>.</td>
         </tr>
         <tr>
           <td>2023 → now</td>
-          <td><span class="stack">Freelance · Next.js · Node · Postgres</span> — conception et opération de SaaS en autonomie.</td>
+          <td>Freelance fullstack <span class="stack">Next.js · Node · PostgreSQL</span> — conception et opération de SaaS en autonomie depuis mon homelab.</td>
         </tr>
       </table>
     </section>
 
     <!-- ============================================ -->
-    <!-- 08 — Labs · Side                             -->
+    <!-- 09 — Labs · Side projects sur GitHub          -->
     <!-- ============================================ -->
     <section class="chapter">
-      <div class="chapter__num">08 · Labs · Side</div>
+      <div class="chapter__num">09 · Labs · Side</div>
       <h2 class="word amber">LABS.</h2>
       <div class="chapter__after" style="border-top: 0; padding-top: 0; max-width: none;">
         <p>Ce que je fais quand personne ne paye — parce que je peux pas m'en empêcher.</p>
@@ -232,27 +295,32 @@
         <article class="labs-item">
           <div class="kind">Reverse engineering</div>
           <h3 class="name">V308 RTSP hack</h3>
-          <p class="desc">Décryptage protocole propriétaire d'une caméra IP : AES-128-ECB, TCP:8800, décodage H.264/HEVC + AAC. Le hack qui alimente BabyMonitor.</p>
+          <p class="desc">Décryptage du protocole propriétaire d'une caméra IP Xiaovv : AES-128-ECB, TCP:8800, décodage H.264/HEVC + AAC. Le hack qui alimente BabyMonitor.</p>
         </article>
         <article class="labs-item">
-          <div class="kind">Mobile · Android natif</div>
-          <h3 class="name">Ringdo</h3>
-          <p class="desc">App Android Java native — observer du file system, BootReceiver auto-start, service de background pour upload automatique. Du bas-niveau quand le sujet le demande.</p>
+          <div class="kind">MCP server · graphics</div>
+          <h3 class="name">gimp-mcp</h3>
+          <p class="desc">Serveur Model Context Protocol pour GIMP : un LLM peut piloter le logiciel d'image directement (ouvrir, éditer, appliquer des filtres) en langage naturel.</p>
         </article>
         <article class="labs-item">
-          <div class="kind">Data · catalogue</div>
-          <h3 class="name">Strainfinderz</h3>
-          <p class="desc">Catalogue de variétés CBD. Recherche, profils terpènes, comparateur — produit data + UX.</p>
+          <div class="kind">MCP server · 3D</div>
+          <h3 class="name">sketchup-mcp</h3>
+          <p class="desc">Même principe pour SketchUp : exposition d'un MCP server qui permet à un LLM de manipuler des modèles 3D et automatiser la modélisation.</p>
         </article>
         <article class="labs-item">
-          <div class="kind">Event · loi 1901</div>
+          <div class="kind">Event · Next 14 · Prisma</div>
           <h3 class="name">Cann'Agri Expo</h3>
-          <p class="desc">Site Next 14 + Prisma + i18n du salon B2B annuel de la filière CBD française. QR codes, génération PDF, multilangue.</p>
+          <p class="desc">Site du salon B2B annuel : Next 14 + Prisma + NextAuth + i18n, QR codes badges, génération PDF, tests Jest. Livré pour mon asso.</p>
+        </article>
+        <article class="labs-item">
+          <div class="kind">CLI · DX</div>
+          <h3 class="name">CLInterface</h3>
+          <p class="desc">Outil d'interface en ligne de commande pour explorer un projet HTML/JS. Side-project qui m'a appris à rendre du terminal jouable.</p>
         </article>
       </div>
 
       <div class="labs-vibe">
-        “<strong>Vibe coding between terpenes &amp; commits.</strong>” — c'est ma signature. Code par jour, side-projects par envie : reverse-engineering, apps natives, ML audio. Tout nourrit les mêmes compétences — opérer un produit, gérer du concret, prendre les décisions qui marchent. <a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener">github.com/FelixDaCraft ↗</a>
+        “<strong>Vibe coding between terpenes &amp; commits.</strong>” — c'est ma signature. Code par jour, side-projects par envie : reverse-engineering, apps natives, MCP servers, ML audio. Tout nourrit les mêmes compétences — opérer un produit, gérer du concret, prendre les décisions qui marchent. <a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener">github.com/FelixDaCraft ↗</a>
       </div>
     </section>
 
@@ -264,7 +332,7 @@
         <div class="chapter__num">09 · Hire</div>
         <h2 class="word">LET'S BUILD.</h2>
         <div class="contact-block">
-          <div class="row"><span class="key">Tarif</span><span class="val amber">600 – 700 €/j · 3j/sem · slot 14 juin</span></div>
+          <div class="row"><span class="key">Tarif</span><span class="val amber">À discuter · 3j/sem · slot à valider</span></div>
           <div class="row"><span class="key">Email</span><span class="val"><a href="mailto:yann.maillot.29@gmail.com">yann.maillot.29@gmail.com</a></span></div>
           <div class="row"><span class="key">Téléphone</span><span class="val"><a href="tel:+33626735597">+33 6 26 73 55 97</a></span></div>
           <div class="row"><span class="key">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/yann-maillot" target="_blank" rel="noopener">/in/yann-maillot ↗</a></span></div>
