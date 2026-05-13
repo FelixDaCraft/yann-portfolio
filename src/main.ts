@@ -55,7 +55,8 @@ if (!reduceMotion) {
           el.classList.remove("pre-reveal");
           el.classList.add("is-visible");
           el.querySelectorAll<HTMLElement>(".glyph").forEach((g, i) => {
-            g.style.transitionDelay = `${i * 32}ms`;
+            // Stagger 22ms (UI designer reco — plus serré pour effet "claque")
+            g.style.transitionDelay = `${i * 22}ms`;
           });
           revealIO.unobserve(el);
         }
@@ -159,7 +160,8 @@ pivotWrappers.forEach((wrapper) => {
     const total = Math.max(1, wrapper.offsetHeight - winH);
     const progress = Math.max(0, Math.min(1, -rect.top / total));
     lines.forEach((line, i) => {
-      const start = 0.18 + i * 0.22; // 0.18, 0.40, 0.62
+      // Seuils recalibrés pour 200dvh (Frontend reco) — premier reveal à 10%
+      const start = 0.10 + i * 0.28; // 0.10, 0.38, 0.66
       if (progress >= start) line.classList.add("is-revealed");
       else line.classList.remove("is-revealed");
     });
@@ -180,7 +182,52 @@ pivotWrappers.forEach((wrapper) => {
 });
 
 // ============================================
-// 8. Live clock (status pill — optional, shown only if #live-clock present)
+// 8. Cursor follower tag — Active Theory-style "→ voir" on labs hover
+// ============================================
+if (!reduceMotion && fineHover) {
+  const tag = document.querySelector<HTMLElement>(".cursor-tag");
+  if (tag) {
+    let active = false;
+    let raf: number | null = null;
+    let tx = 0,
+      ty = 0,
+      cx = 0,
+      cy = 0;
+    const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
+    const loop = (): void => {
+      cx = lerp(cx, tx, 0.18);
+      cy = lerp(cy, ty, 0.18);
+      tag.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -160%) scale(1)`;
+      if (active) raf = requestAnimationFrame(loop);
+    };
+    document.querySelectorAll<HTMLElement>(".labs-item, [data-cursor='view']").forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        active = true;
+        tag.classList.add("is-active");
+        if (raf === null) raf = requestAnimationFrame(loop);
+      });
+      el.addEventListener("mouseleave", () => {
+        active = false;
+        tag.classList.remove("is-active");
+        if (raf !== null) {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      });
+      el.addEventListener(
+        "mousemove",
+        (e) => {
+          tx = (e as MouseEvent).clientX;
+          ty = (e as MouseEvent).clientY;
+        },
+        { passive: true },
+      );
+    });
+  }
+}
+
+// ============================================
+// 9. Live clock (status pill — optional, shown only if #live-clock present)
 // ============================================
 const clockEl = document.getElementById("live-clock");
 if (clockEl) {

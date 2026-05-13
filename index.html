@@ -8,8 +8,8 @@
   <link rel="canonical" href="https://yann.aynn.fr" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <title>Yann Maillot — Développeur Next.js Freelance Nantes · 3 projets en prod</title>
-  <meta name="description" content="Senior fullstack indépendant (Next.js · tRPC · Postgres). 3 projets en production que j'opère moi-même. Ex-Accenture. Disponible 3j/sem à partir du 14 juin. 600–700 €/j." />
+  <title>Yann Maillot — Développeur fullstack freelance · Next.js · Nantes</title>
+  <meta name="description" content="Senior fullstack JS/Next.js indépendant à Nantes. Ex-Accenture. J'opère mes propres SaaS et je reverse-engineere les protocoles qui résistent. Disponible 3 jours par semaine." />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Yann Maillot — Développeur Next.js Freelance Nantes" />
@@ -26,7 +26,9 @@
   <!-- Fraunces variable (subset opsz 72-144) + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,72..144,300..900,0..100,0..1;1,72..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=optional" rel="stylesheet" />
+  <!-- Preload Fraunces variable — c'est le LCP candidate du Hero. Évite le swap. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,72..144,300..900,0..100,0..1;1,72..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,72..144,300..900,0..100,0..1;1,72..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <!-- JSON-LD : Person + LocalBusiness + FAQ -->
   <script type="application/ld+json">
@@ -44,14 +46,25 @@
   </script>
 </head>
 <body>
-  <!-- Always-visible status pill -->
-  <div class="status-bar" role="status" aria-live="polite">
-    <span class="dot" aria-hidden="true"></span>
-    <span class="label"><strong>14 juin</strong> · 3j/sem · 600–700 €/j</span>
-    <a class="cta" href="https://cal.com/yannmaillot/30min" target="_blank" rel="noopener">
+  <!-- Always-visible status pill — heartbeat signature (mini-EKG) + nav shortcuts -->
+  <div class="status-bar" role="status">
+    <span class="heartbeat" aria-hidden="true">
+      <span class="hb-bar" data-bar="0"></span>
+      <span class="hb-bar" data-bar="1"></span>
+      <span class="hb-bar" data-bar="2"></span>
+    </span>
+    <span class="label">Disponible · 3j/sem · TJM <span data-todo="tjm">à discuter</span></span>
+    <span class="nav-links" aria-label="Navigation rapide">
+      <a href="#projects">Projets</a>
+      <a href="#contact">Contact</a>
+    </span>
+    <a class="cta" href="mailto:yann.maillot.29@gmail.com?subject=Mission%20freelance" rel="noopener">
       Débriefing technique <span class="arrow" aria-hidden="true">→</span>
     </a>
   </div>
+
+  <!-- Active Theory-style cursor tag — apparait au hover des labs items -->
+  <div class="cursor-tag" aria-hidden="true">→ voir</div>
 
   <main>
     <!-- ============================================ -->
@@ -75,25 +88,25 @@
     <section class="chapter chapter--dv chapter--output">
       <div class="chapter__num">02 · Output</div>
       <div class="dv-stats" data-revealed="false">
-        <div class="dv-stat" style="--h: 0.97">
+        <div class="dv-stat" style="--h: 0.85">
           <div class="dv-bar"></div>
-          <div class="dv-val">99.97%</div>
-          <div class="dv-key">uptime cupmetrics</div>
+          <div class="dv-val">SaaS</div>
+          <div class="dv-key">multi-tenant · tRPC + Stripe Connect</div>
         </div>
-        <div class="dv-stat" style="--h: 1">
+        <div class="dv-stat" style="--h: 0.95">
           <div class="dv-bar"></div>
-          <div class="dv-val">100%</div>
-          <div class="dv-key">uptime platinum</div>
+          <div class="dv-val">PWA</div>
+          <div class="dv-key">reverse + ML · push iOS</div>
         </div>
-        <div class="dv-stat" style="--h: 0.78">
+        <div class="dv-stat" style="--h: 0.7">
           <div class="dv-bar"></div>
-          <div class="dv-val">ML+RE</div>
-          <div class="dv-key">babymonitor stack</div>
+          <div class="dv-val">3D</div>
+          <div class="dv-key">Three.js · trophées · Stripe</div>
         </div>
         <div class="dv-stat" style="--h: 0.55">
           <div class="dv-bar"></div>
-          <div class="dv-val">3</div>
-          <div class="dv-key">en production</div>
+          <div class="dv-val">homelab</div>
+          <div class="dv-key">Docker · Cloudflare · auto-deploy</div>
         </div>
       </div>
       <h2 class="word platine">3 EN PROD.</h2>
@@ -119,49 +132,53 @@
       </div>
     </section>
 
-    <!-- Respiration A — astérisme + phrase italique -->
-    <aside class="respiration" aria-hidden="true">
+    <!-- Respiration A — Pentagram-style word-as-bg + astérisme + phrase italique -->
+    <aside class="respiration" aria-hidden="true" data-bg-word="TROIS">
       <div class="resp-ast">⁂</div>
       <p class="resp-italic">Trois produits. Trois architectures. Trois preuves.</p>
     </aside>
 
     <!-- ============================================ -->
-    <!-- 04 — CupMetrics (case study, classique)      -->
-    <!-- ============================================ -->
-    <section class="chapter chapter--case">
-      <div class="chapter__num">04 · Case study 01</div>
-      <h2 class="word">CUPMETRICS.</h2>
-      <dl class="project-meta">
-        <div><dt>Type</dt><dd>SaaS multi-tenant événementiel</dd></div>
-        <div><dt>Stack</dt><dd class="stack">Next.js 15 · tRPC v11 · Drizzle · Postgres · Better Auth · Stripe Connect</dd></div>
-        <div><dt>Statut</dt><dd class="metric">● En production · Stripe Connect live</dd></div>
-        <div><dt>Détail</dt><dd>Plateforme de gestion d'événements pros — organisateurs, jurys, producteurs, sponsors. Multi-tenant routing par sous-domaine, génération PDF, e-mails transactionnels.</dd></div>
-      </dl>
-    </section>
-
-    <!-- ============================================ -->
-    <!-- 05 — BabyMonitor (MOT PIVOT · sticky 300dvh) -->
+    <!-- 04 — BABYMONITOR (case 01 · MOT PIVOT · 200dvh) -->
+    <!-- "Wow first" : on commence par le proof technique le plus rare. -->
     <!-- ============================================ -->
     <div class="pivot-wrapper">
-      <section class="chapter chapter--case chapter--pivot">
-        <div class="chapter__num">05 · Case study 02 · Pivot</div>
-        <h2 class="word">BABYMONITOR.</h2>
+      <section id="projects" class="chapter chapter--case chapter--pivot">
+        <div class="chapter__num">04 · Case study 01 · Pivot</div>
+        <h2 class="word">QUAND UN PROTOCOLE REFUSE DE PARLER.</h2>
         <div class="pivot-stack">
           <div class="pivot-line" data-line="0">
-            <span class="em">PWA self-hostée</span> · surveillance bébé temps réel · push iOS DND-bypass.
+            J'ai démonté le protocole propriétaire d'une caméra IP Xiaovv —<br/>
+            <span class="em">V308 sur TCP:8800, chiffrement AES-128-ECB</span>, décodage H.264 / HEVC.
           </div>
           <div class="pivot-line" data-line="1">
-            Intègre mon <span class="em">reverse-engineering V308</span> (protocole propriétaire AES-128-ECB), avec <span class="em-sauge">détection ML des pleurs</span> via YAMNet TFLite.
+            J'en ai fait <span class="em">BabyMonitor</span>, une PWA self-hostée pour surveiller mon bébé en temps réel,
+            avec <span class="em-sauge">détection ML des pleurs</span> (YAMNet TFLite) et push iOS qui perce le mode silencieux.
           </div>
           <div class="pivot-line" data-line="2">
-            <span class="stack">Python · YAMNet · Node Express · go2rtc · better-sqlite3 · Web Push · ntfy · Docker · Traefik</span>
+            <span class="stack">Python · YAMNet · Node Express · go2rtc · better-sqlite3 · Web Push · ntfy · Docker · Traefik</span><br/>
+            Tourne sur mon homelab. Utilisé chaque nuit.
           </div>
         </div>
       </section>
     </div>
 
     <!-- ============================================ -->
-    <!-- 06 — Platinum CBD Cup (case study, classique) -->
+    <!-- 05 — CupMetrics (case 02 · crédibilité SaaS)  -->
+    <!-- ============================================ -->
+    <section class="chapter chapter--case">
+      <div class="chapter__num">05 · Case study 02</div>
+      <h2 class="word">CUPMETRICS.</h2>
+      <dl class="project-meta">
+        <div><dt>Type</dt><dd>SaaS multi-tenant événementiel</dd></div>
+        <div><dt>Stack</dt><dd class="stack">Next.js 15 · tRPC v11 · Drizzle · Postgres · Better Auth · Stripe Connect</dd></div>
+        <div><dt>Statut</dt><dd class="metric">● Stripe Connect intégré · multi-tenant par sous-domaine</dd></div>
+        <div><dt>Détail</dt><dd>Plateforme de gestion d'événements pros — organisateurs, jurys, producteurs, sponsors. Routing sous-domaine, génération PDF, e-mails transactionnels.</dd></div>
+      </dl>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- 06 — Platinum CBD Cup (case 03 · vitrine live) -->
     <!-- ============================================ -->
     <section class="chapter chapter--case">
       <div class="chapter__num">06 · Case study 03</div>
@@ -169,34 +186,34 @@
       <dl class="project-meta">
         <div><dt>Type</dt><dd>Fork standalone · 3D &amp; paiements</dd></div>
         <div><dt>Stack</dt><dd class="stack">Next.js 15 · Three.js · R3F · Stripe · Postgres · Docker</dd></div>
-        <div><dt>URL</dt><dd><a href="https://platinum.aynn.fr" target="_blank" rel="noopener">platinum.aynn.fr ↗</a></dd></div>
-        <div><dt>Détail</dt><dd>Single-tenant. Trophées 3D R3F, paiements producteurs, espace jury. Auto-deploy via push git, Cloudflare Tunnel sur homelab perso.</dd></div>
+        <div><dt>Live</dt><dd><a href="https://platinum.aynn.fr" target="_blank" rel="noopener">platinum.aynn.fr ↗</a></dd></div>
+        <div><dt>Détail</dt><dd>Single-tenant. Trophées 3D R3F, paiements producteurs, espace jury. Auto-deploy via push git, Cloudflare Tunnel sur homelab.</dd></div>
       </dl>
     </section>
 
-    <!-- Respiration B — pull-quote consolidée -->
-    <aside class="respiration respiration--right" aria-hidden="true">
-      <p class="resp-pull">3 produits.<br/><span class="em">0 downtime.</span><br/>1 dev.</p>
+    <!-- Respiration B — Pentagram-style "ZÉRO" en fond amplifie "0 downtime" -->
+    <aside class="respiration respiration--right" aria-hidden="true" data-bg-word="ZÉRO">
+      <p class="resp-pull">3 produits.<br/><span class="em">0 dépendance externe.</span><br/>1 dev.</p>
     </aside>
 
     <!-- ============================================ -->
-    <!-- 07 — Path · Timeline Table                   -->
+    <!-- 07 — Path · Timeline Table (avec asso 2022-now) -->
     <!-- ============================================ -->
     <section class="chapter chapter--tl">
       <div class="chapter__num">07 · Path</div>
-      <h2 class="word">ACCENTURE → CREW.</h2>
+      <h2 class="word">ACCENTURE → SOLO.</h2>
       <table class="tech-table">
         <tr>
           <td>2022 – 2023</td>
-          <td><span class="stack">Accenture · Salesforce · Java / JEE</span> — projet client grand compte.</td>
+          <td><span class="stack">Accenture · Salesforce Developer · Java/JEE</span> — projet client grand compte.</td>
         </tr>
         <tr>
-          <td>2023 – 2026</td>
+          <td>2022 → now</td>
+          <td>Co-fondateur de <a href="https://platinum.aynn.fr" target="_blank" rel="noopener">Platinum CBD</a> — asso loi 1901 qui organise Cann'Agri Expo &amp; Platinum CBD Cup.</td>
+        </tr>
+        <tr>
+          <td>2023 → now</td>
           <td><span class="stack">Freelance · Next.js · Node · Postgres</span> — conception et opération de SaaS en autonomie.</td>
-        </tr>
-        <tr>
-          <td>2026 → now</td>
-          <td>Tech lead fractional · cadrage · audit · build &amp; ship pour startups et scale-ups.</td>
         </tr>
       </table>
     </section>
@@ -223,14 +240,14 @@
           <p class="desc">App Android Java native — observer du file system, BootReceiver auto-start, service de background pour upload automatique. Du bas-niveau quand le sujet le demande.</p>
         </article>
         <article class="labs-item">
-          <div class="kind">Web app · TBD</div>
-          <h3 class="name">Psy</h3>
-          <p class="desc">Application Next.js en cours. <!-- TODO Yann : 1 ligne sur Psy --></p>
-        </article>
-        <article class="labs-item">
           <div class="kind">Data · catalogue</div>
           <h3 class="name">Strainfinderz</h3>
           <p class="desc">Catalogue de variétés CBD. Recherche, profils terpènes, comparateur — produit data + UX.</p>
+        </article>
+        <article class="labs-item">
+          <div class="kind">Event · loi 1901</div>
+          <h3 class="name">Cann'Agri Expo</h3>
+          <p class="desc">Site Next 14 + Prisma + i18n du salon B2B annuel de la filière CBD française. QR codes, génération PDF, multilangue.</p>
         </article>
       </div>
 
@@ -242,7 +259,7 @@
     <!-- ============================================ -->
     <!-- 09 — Let's Build · Portrait · Contact        -->
     <!-- ============================================ -->
-    <section class="chapter chapter--final">
+    <section id="contact" class="chapter chapter--final">
       <div>
         <div class="chapter__num">09 · Hire</div>
         <h2 class="word">LET'S BUILD.</h2>
