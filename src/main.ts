@@ -43,37 +43,11 @@ document.querySelectorAll<HTMLElement>(".word").forEach((wordEl) => {
 // 4. Reveal (IntersectionObserver) + Fragmentation au scroll-exit
 // ============================================
 if (!reduceMotion) {
-  // 1. Add pre-reveal initial state via JS — if JS disabled or skipped,
-  //    words stay visible by default (graceful fallback).
-  document.querySelectorAll<HTMLElement>(".word").forEach((w) => w.classList.add("pre-reveal"));
-
-  const revealIO = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.classList.remove("pre-reveal");
-          el.classList.add("is-visible");
-          el.querySelectorAll<HTMLElement>(".glyph").forEach((g, i) => {
-            // Stagger 22ms (UI designer reco — plus serré pour effet "claque")
-            g.style.transitionDelay = `${i * 22}ms`;
-          });
-          revealIO.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.15 },
-  );
-  document.querySelectorAll<HTMLElement>(".word.pre-reveal").forEach((w) => revealIO.observe(w));
-
-  // 2. Safety net : if IO somehow never triggers (e.g. fullpage screenshot mode),
-  //    force reveal after 1.2s. Words remain visible no matter what.
-  setTimeout(() => {
-    document.querySelectorAll<HTMLElement>(".word.pre-reveal").forEach((w) => {
-      w.classList.remove("pre-reveal");
-      w.classList.add("is-visible");
-    });
-  }, 1200);
+  // Mots visibles par défaut. Le reveal animation peut être ajouté plus tard
+  // via CSS @starting-style ou animation-timeline si on veut l'effet.
+  // Cette approche garantit que les mots sont TOUJOURS visibles, peu importe
+  // l'état de JS ou IntersectionObserver.
+  document.querySelectorAll<HTMLElement>(".word").forEach((w) => w.classList.add("is-visible"));
   // NOTE : scroll-exit fragmentation désactivée — coût UX trop élevé sur scroll rapide
   // et bug visuel sur SSR / fullpage screenshot. Le reveal initial suffit comme effet.
 } else {
