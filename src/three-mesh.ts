@@ -11,8 +11,8 @@ import { Renderer, Camera, Geometry, Program, Mesh, Vec3 } from 'ogl'
 import type { OGLRenderingContext } from 'ogl'
 
 // ─── Vertex shader ────────────────────────────────────────────────────────────
-// Terrain : multi-fréquence pour créer collines/vallées comme dans l'image.
-// Le mouvement est lent — le relief glisse sur le plan en ~50s.
+// Vagues dominantes (2 sin directionnels) + une harmonique pour casser la
+// régularité. Le terrain glisse vers l'avant comme une houle.
 const VERT = /* glsl */ `
   precision mediump float;
   attribute vec3 position;
@@ -22,33 +22,51 @@ const VERT = /* glsl */ `
   uniform float uTime;
   uniform float uAmplitude;
 
-  // Terrain montagneux : fréquences calibrées sur planeSize 450.
-  float heightAt(vec2 p) {
-    float h = 0.0;
-    h += sin(p.x * 0.055 + p.y * 0.038) * cos(p.y * 0.048 - p.x * 0.03) * 1.0;
-    h += sin(p.x * 0.13 - p.y * 0.085) * 0.40;
-    h += cos(p.x * 0.25 + p.y * 0.21) * 0.16;
+  varying float vHeight;
+  varying float vDepth;
+
+  float waveAt(vec2 p, float t) {
+    // 2 vagues directionnelles dominantes — l'une suit X, l'autre Z.
+    float h = sin(p.x * 0.045 - t * 1.6) * 0.85;
+    h      += sin(p.y * 0.038 + t * 1.2) * 0.65;
+    // Harmonique haute fréquence pour casser la régularité (relief moins lisse).
+    h      += sin(p.x * 0.13 + p.y * 0.09 - t * 0.6) * 0.22;
     return h;
   }
 
   void main() {
     vec3 pos = position;
-    float t = uTime * 0.00012;
+    float t = uTime * 0.0008;
 
-    // Le terrain glisse lentement vers l'avant — comme un drone qui survole.
-    vec2 sample = pos.xz + vec2(t * 3.0, t * 1.7);
-    pos.y += heightAt(sample) * uAmplitude;
+    float h = waveAt(pos.xz, t);
+    pos.y += h * uAmplitude;
+    vHeight = h;
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+    vDepth = -mv.z;            // distance caméra → vertex (positive vers l'avant)
+    gl_Position = projectionMatrix * mv;
   }
 `
 
 // ─── Fragment shader ──────────────────────────────────────────────────────────
+// Lumière variable : les sommets brillent + fog qui efface au loin.
 const FRAG = /* glsl */ `
   precision mediump float;
+
+  varying float vHeight;
+  varying float vDepth;
+
   void main() {
-    // Blanc cassé proche #ededf0, alpha 0.45 — wireframe lisible mais discret.
-    gl_FragColor = vec4(0.93, 0.93, 0.94, 0.45);
+    // Lumière proportionnelle à la hauteur : sommets (+1) plus brillants,
+    // vallées (-1) plus sombres. Range : 0.35 → 1.0.
+    float light = clamp(0.55 + vHeight * 0.55, 0.35, 1.0);
+
+    // Fog au lointain : ligne s'efface entre 80 et 380 unités de profondeur.
+    // Évite la densité visuelle au fond de la scène.
+    float fog = 1.0 - smoothstep(80.0, 380.0, vDepth);
+
+    vec3 col = vec3(0.93, 0.93, 0.94) * light;
+    gl_FragColor = vec4(col, 0.65 * fog);
   }
 `
 
