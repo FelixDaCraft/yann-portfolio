@@ -68,22 +68,27 @@
 
   <main>
     <!-- ============================================ -->
-    <!-- 01 — Identité · Negative Space + portrait    -->
+    <!-- 01 — Header · LET'S BUILD (portrait + contact) -->
     <!-- ============================================ -->
-    <section class="chapter chapter--neg">
-      <div class="chapter__num">01 · Identité</div>
-      <div class="neg-meta">
-        Yann Maillot · Senior Fullstack<br/>
-        Freelance · Nantes<br/>
-        Ex-Accenture<br/>
-        Next.js · TypeScript<br/>
-        tRPC · Postgres · Docker
+    <section id="contact" class="chapter chapter--header">
+      <div class="header-grid">
+        <figure class="header-portrait">
+          <img src="/yann.jpg" alt="Portrait de Yann Maillot" width="480" height="640" />
+          <figcaption>Yann Maillot · Nantes · 2026</figcaption>
+        </figure>
+        <div class="header-content">
+          <div class="chapter__num">01 · Disponible</div>
+          <h1 class="word">LET'S BUILD.</h1>
+          <p class="case-lead">Freelance Fullstack — Next.js, Node, PostgreSQL. Ex-Accenture. J'opère mes propres SaaS et je reverse-engineere les protocoles qui résistent.</p>
+          <dl class="header-contact">
+            <div><dt>Email</dt><dd><a href="mailto:yann.maillot.29@gmail.com">yann.maillot.29@gmail.com</a></dd></div>
+            <div><dt>Téléphone</dt><dd><a href="tel:+33626735597">+33 6 26 73 55 97</a></dd></div>
+            <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/yann-maillot" target="_blank" rel="noopener">/in/yann-maillot ↗</a></dd></div>
+            <div><dt>GitHub</dt><dd><a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener">@FelixDaCraft ↗</a></dd></div>
+            <div><dt>Tarif</dt><dd class="amber">À discuter · 3j/sem · Remote ou Nantes</dd></div>
+          </dl>
+        </div>
       </div>
-      <figure class="neg-portrait">
-        <img src="/yann.jpg" alt="Portrait de Yann Maillot" width="120" height="120" />
-        <figcaption>Yann · 2026</figcaption>
-      </figure>
-      <h1 class="word">FREELANCE FULLSTACK.</h1>
     </section>
 
     <!-- ============================================ -->
@@ -322,6 +327,11 @@
           <p class="desc">Reverse-engineered Python client for Macrovideo / Xiaovv V308 family IP cameras. AES-128-ECB sur TCP:8800, décodage H.264/HEVC + AAC. C'est le hack qui alimente BabyMonitor.</p>
         </article>
         <article class="labs-item">
+          <div class="kind">Bot · multi-agent · LLM local</div>
+          <h3 class="name"><a href="https://github.com/BorisHenne/clawdbot" target="_blank" rel="noopener">ClawdBot ↗</a></h3>
+          <p class="desc">Bot Twitter multi-agent intelligent dédié à la veille et la diffusion de contenu sur la régulation des grandes entreprises technologiques. Architecture <span class="em">Ollama (LLM local)</span> pour un coût mensuel &lt; 3€. CI/CD complet. Co-développé avec <a href="https://github.com/BorisHenne" target="_blank" rel="noopener">@BorisHenne</a>.</p>
+        </article>
+        <article class="labs-item">
           <div class="kind">Event · Next 14 · Prisma</div>
           <h3 class="name"><a href="https://github.com/FelixDaCraft/cannagri-expo" target="_blank" rel="noopener">cannagri-expo ↗</a></h3>
           <p class="desc">Site du salon professionnel Cann'Agri Expo (asso Platinum CBD). Next 14, Prisma, NextAuth, i18n, QR codes badges, génération PDF, tests Jest.</p>
@@ -332,31 +342,18 @@
           <p class="desc">Mini side-project HTML qui propose une interface ligne de commande pour explorer un contenu web. Exercice de style autour du terminal jouable.</p>
         </article>
       </div>
-
-      <div class="labs-vibe">
-        “<strong>Vibe coding between terpenes &amp; commits.</strong>” — c'est ma signature. Code par jour, side-projects par envie : reverse-engineering, apps natives, ML embarqué, sites pour l'asso. Tout nourrit les mêmes compétences. <a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener" data-cursor="view">github.com/FelixDaCraft ↗</a>
-      </div>
     </section>
 
     <!-- ============================================ -->
-    <!-- 09 — Let's Build · Portrait · Contact        -->
+    <!-- Closing — CTA simple, le contact étant en Header -->
     <!-- ============================================ -->
-    <section id="contact" class="chapter chapter--final">
-      <div>
-        <div class="chapter__num">09 · Hire</div>
-        <h2 class="word">LET'S BUILD.</h2>
-        <div class="contact-block">
-          <div class="row"><span class="key">Tarif</span><span class="val amber">À discuter · 3j/sem · slot à valider</span></div>
-          <div class="row"><span class="key">Email</span><span class="val"><a href="mailto:yann.maillot.29@gmail.com">yann.maillot.29@gmail.com</a></span></div>
-          <div class="row"><span class="key">Téléphone</span><span class="val"><a href="tel:+33626735597">+33 6 26 73 55 97</a></span></div>
-          <div class="row"><span class="key">LinkedIn</span><span class="val"><a href="https://www.linkedin.com/in/yann-maillot" target="_blank" rel="noopener">/in/yann-maillot ↗</a></span></div>
-          <div class="row"><span class="key">GitHub</span><span class="val"><a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener">@FelixDaCraft ↗</a></span></div>
-          <div class="row"><span class="key">Cal.com</span><span class="val"><a href="https://cal.com/yannmaillot/30min" target="_blank" rel="noopener">Débriefing technique · 30 min ↗</a></span></div>
-        </div>
-      </div>
-      <div class="portrait" title="Survole pour voir en couleur">
-        <img src="/yann.jpg" alt="Portrait de Yann Maillot, développeur freelance à Nantes" loading="lazy" decoding="async" width="448" height="597" />
-      </div>
+    <section class="chapter chapter--closing">
+      <div class="chapter__num">∎ Closing</div>
+      <h2 class="word">ON SE PARLE.</h2>
+      <p class="case-lead">Le contact est déjà là-haut. Email, Cal.com, ou téléphone — choisis le plus rapide.</p>
+      <p class="closing-cta">
+        <a href="mailto:yann.maillot.29@gmail.com?subject=Mission%20freelance" class="closing-link">→ yann.maillot.29@gmail.com</a>
+      </p>
     </section>
   </main>
 
