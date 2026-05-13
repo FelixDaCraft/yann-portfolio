@@ -1,0 +1,23 @@
+{
+  "name": "yann-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Portfolio personnel de Yann Maillot — yann.aynn.fr",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vanilla-extract/css": "^1.20.1",
+    "@vanilla-extract/vite-plugin": "^5.2.2",
+    "open-props": "^1.7.23"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.12"
+  }
+}

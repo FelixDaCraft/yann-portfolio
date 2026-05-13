@@ -1,0 +1,21 @@
+services:
+  # ============================================
+  # yann-portfolio — yann.aynn.fr
+  # Bound on 127.0.0.1:3019 — routed by the Cloudflare Tunnel
+  # running on the homelab host (same pattern as platinum-cbd-cup).
+  # ============================================
+  yann-portfolio:
+    image: yann-portfolio:latest
+    container_name: yann-portfolio
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:3019:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

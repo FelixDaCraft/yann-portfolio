@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yann.aynn.fr/sitemap.xml
