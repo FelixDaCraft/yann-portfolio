@@ -9,7 +9,9 @@ WORKDIR /app
 RUN corepack enable pnpm
 
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm install --frozen-lockfile
+# --ignore-scripts bypasses pnpm v10 strict build-scripts approval.
+# esbuild ships its binary pre-built so its post-install isn't required.
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 COPY . .
 RUN pnpm build
