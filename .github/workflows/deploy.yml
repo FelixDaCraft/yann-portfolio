@@ -1,0 +1,32 @@
+# Auto-deploy yann.aynn.fr to the homelab on push to main.
+#
+# Requires a GitHub Actions **self-hosted runner** registered on the homelab
+# host (192.168.1.122) with the `homelab` label. To register one :
+#
+#   1. GitHub repo → Settings → Actions → Runners → New self-hosted runner
+#   2. Run the install commands on the homelab (root@192.168.1.122)
+#   3. Add the `homelab` label
+#
+# Until the runner is configured, this workflow stays inactive — `runs-on`
+# can't find a matching runner, so it skips silently. Deploy manually via :
+#   ssh root@192.168.1.122 "bash /opt/yann-portfolio/deploy.sh"
+
+name: Deploy to homelab
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-yann-portfolio
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Pull and rebuild on homelab
+    runs-on: [self-hosted, homelab]
+    timeout-minutes: 10
+    steps:
+      - name: Run deploy script
+        run: bash /opt/yann-portfolio/deploy.sh
