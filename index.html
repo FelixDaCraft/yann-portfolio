@@ -46,22 +46,15 @@
   </script>
 </head>
 <body>
-  <!-- Always-visible status pill — heartbeat signature (mini-EKG) + nav shortcuts -->
-  <div class="status-bar" role="status">
-    <span class="heartbeat" aria-hidden="true">
-      <span class="hb-bar" data-bar="0"></span>
-      <span class="hb-bar" data-bar="1"></span>
-      <span class="hb-bar" data-bar="2"></span>
-    </span>
-    <span class="label">Disponible · 3j/sem · TJM <span data-todo="tjm">à discuter</span></span>
-    <span class="nav-links" aria-label="Navigation rapide">
-      <a href="#projects">Projets</a>
-      <a href="#contact">Contact</a>
-    </span>
-    <a class="cta" href="mailto:yann.maillot.29@gmail.com?subject=Mission%20freelance" rel="noopener">
-      Débriefing technique <span class="arrow" aria-hidden="true">→</span>
-    </a>
-  </div>
+  <!-- Always-visible nav — ancres vers les sections principales -->
+  <nav class="status-bar" aria-label="Navigation rapide">
+    <a href="#contact">Hire</a>
+    <a href="#mission">Mission</a>
+    <a href="#stats">Output</a>
+    <a href="#projects">Projets</a>
+    <a href="#path">Parcours</a>
+    <a href="#closing">Contact</a>
+  </nav>
 
   <!-- Active Theory-style cursor tag — apparait au hover des labs items -->
   <div class="cursor-tag" aria-hidden="true">→ voir</div>
@@ -95,7 +88,7 @@
     <!-- ============================================ -->
     <!-- 02 — Manifesto · Modalités (juste après Header) -->
     <!-- ============================================ -->
-    <section class="chapter">
+    <section id="mission" class="chapter">
       <div class="chapter__num">02 · Manifesto · Modalités</div>
       <h2 class="word">MISSION.</h2>
       <div class="manifesto">
@@ -115,7 +108,7 @@
     <!-- ============================================ -->
     <!-- 03 — Output · Data Layer (juste avant les projets) -->
     <!-- ============================================ -->
-    <section class="chapter chapter--dv chapter--output">
+    <section id="stats" class="chapter chapter--dv chapter--output">
       <div class="chapter__num">03 · Output</div>
       <div class="dv-stats" data-revealed="false">
         <div class="dv-stat" style="--h: 0.95">
@@ -284,7 +277,7 @@
     <!-- ============================================ -->
     <!-- 08 — Path · Timeline (parcours réel depuis 2016) -->
     <!-- ============================================ -->
-    <section class="chapter chapter--tl">
+    <section id="path" class="chapter chapter--tl">
       <div class="chapter__num">08 · Path</div>
       <h2 class="word">10 ANS DE CRAFT.</h2>
       <table class="tech-table">
@@ -314,7 +307,7 @@
     <!-- ============================================ -->
     <!-- Closing — ON SE PARLE · CTA principal Cal.com -->
     <!-- ============================================ -->
-    <section class="chapter chapter--closing">
+    <section id="closing" class="chapter chapter--closing">
       <div class="chapter__num">∎ On se parle</div>
       <h2 class="word">ON SE PARLE.</h2>
       <p class="case-lead">30 minutes pour cadrer ce qu'on peut faire ensemble. Réserve un créneau, sinon prends le canal qui t'arrange.</p>
