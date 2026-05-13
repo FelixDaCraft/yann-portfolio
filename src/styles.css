@@ -604,6 +604,19 @@
     max-width: 60rem;
     display: flex; flex-direction: column; gap: 1.25rem;
   }
+  /* Lead sentence sous le titre — descriptif narratif court */
+  .case-lead {
+    margin: 1.25rem 0 0 -0.035em;
+    max-width: 56rem;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    font-variation-settings: "wght" 300, "opsz" 144, "ital" 1;
+    font-style: italic;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--ink-muted);
+  }
+
   /* Hello Monday-style clip-path reveal — "venitian blind" qui lève
      en lieu et place du fade/translate générique. Métaphore : un protocole
      qui se déchiffre ligne par ligne. */
