@@ -43,6 +43,10 @@ document.querySelectorAll<HTMLElement>(".word").forEach((wordEl) => {
 // 4. Reveal (IntersectionObserver) + Fragmentation au scroll-exit
 // ============================================
 if (!reduceMotion) {
+  // 1. Add pre-reveal initial state via JS — if JS disabled or skipped,
+  //    words stay visible by default (graceful fallback).
+  document.querySelectorAll<HTMLElement>(".word").forEach((w) => w.classList.add("pre-reveal"));
+
   const revealIO = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -61,49 +65,18 @@ if (!reduceMotion) {
   );
   document.querySelectorAll<HTMLElement>(".word.pre-reveal").forEach((w) => revealIO.observe(w));
 
-  // Fragmentation : lettres explosent quand le mot SORT par le haut, recompose en revenant
-  const fragIO = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const target = entry.target as HTMLElement;
-        const glyphs = target.querySelectorAll<HTMLElement>(".glyph");
-        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-          glyphs.forEach((g, i) => {
-            const idx = Number(g.dataset.i ?? "0");
-            const seed = (idx * 17 + 11) % 360;
-            const angle = (seed * Math.PI) / 180;
-            const dist = 30 + (seed % 50);
-            const rot = (seed % 2 === 0 ? 1 : -1) * (seed % 25);
-            g.style.transition = `transform ${500 + i * 20}ms cubic-bezier(0.55,0,1,0.45) ${i * 24}ms, opacity ${300 + i * 12}ms ease ${i * 24}ms`;
-            g.style.transform = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist - 80}px) rotate(${rot}deg)`;
-            g.style.opacity = "0";
-          });
-        } else if (entry.isIntersecting) {
-          glyphs.forEach((g, i) => {
-            g.style.transition = `transform ${600 + i * 15}ms cubic-bezier(0.16,1,0.3,1) ${i * 18}ms, opacity ${400 + i * 10}ms ease ${i * 18}ms`;
-            g.style.transform = "";
-            g.style.opacity = "";
-          });
-        }
-      });
-    },
-    { threshold: 0, rootMargin: "0px 0px -5% 0px" },
-  );
-
-  const observeAll = (): void => {
-    document.querySelectorAll<HTMLElement>(".word").forEach((w) => fragIO.observe(w));
-  };
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(observeAll);
-  } else {
-    observeAll();
-  }
+  // 2. Safety net : if IO somehow never triggers (e.g. fullpage screenshot mode),
+  //    force reveal after 1.2s. Words remain visible no matter what.
+  setTimeout(() => {
+    document.querySelectorAll<HTMLElement>(".word.pre-reveal").forEach((w) => {
+      w.classList.remove("pre-reveal");
+      w.classList.add("is-visible");
+    });
+  }, 1200);
+  // NOTE : scroll-exit fragmentation désactivée — coût UX trop élevé sur scroll rapide
+  // et bug visuel sur SSR / fullpage screenshot. Le reveal initial suffit comme effet.
 } else {
-  // Reduced motion : reveal direct
-  document.querySelectorAll<HTMLElement>(".word.pre-reveal").forEach((w) => {
-    w.classList.remove("pre-reveal");
-    w.classList.add("is-visible");
-  });
+  // Reduced motion : skip pre-reveal entirely, words shown as-is.
 }
 
 // ============================================
