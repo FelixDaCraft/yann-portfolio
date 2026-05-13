@@ -46,12 +46,8 @@
   </script>
 </head>
 <body>
-  <!-- 3D wireframe background — lazy loaded, aria-hidden, pointer-events none -->
-  <canvas
-    id="bg-canvas"
-    aria-hidden="true"
-    style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.2s ease;"
-  ></canvas>
+  <!-- 3D wireframe background — lazy loaded, behind content, pointer-events none -->
+  <canvas id="bg-canvas" class="bg-mesh" aria-hidden="true"></canvas>
 
   <!-- Always-visible nav — ancres vers les sections principales -->
   <nav class="status-bar" aria-label="Navigation rapide">

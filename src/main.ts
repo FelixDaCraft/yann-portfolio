@@ -8,37 +8,29 @@ import "./styles.css";
 // 0. Three-mesh background — lazy loaded via requestIdleCallback
 //    pour ne pas plomber le LCP (canvas inséré avant <main>)
 // ============================================
-const loadMeshWhenIdle = (): void => {
+const loadMesh = (): void => {
   const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
   if (!canvas) return;
 
-  const doLoad = (): void => {
-    import('./three-mesh')
-      .then(({ initMesh3D }) => {
-        const cleanup = initMesh3D(canvas);
-        // Expose cleanup pour éventuel HMR Vite
-        if (import.meta.hot) {
-          import.meta.hot.dispose(cleanup);
-        }
-      })
-      .catch(() => {
-        // WebGL non dispo ou erreur réseau — le canvas reste invisible, pas de crash
-      });
-  };
-
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(doLoad, { timeout: 3000 });
-  } else {
-    // Fallback Safari : on attend un tick après le premier paint
-    setTimeout(doLoad, 200);
-  }
+  import('./three-mesh')
+    .then(({ initMesh3D }) => {
+      const cleanup = initMesh3D(canvas);
+      if (import.meta.hot) {
+        import.meta.hot.dispose(cleanup);
+      }
+    })
+    .catch((err) => {
+      // WebGL non dispo ou erreur réseau — le canvas reste invisible
+      console.warn('[mesh] init failed', err);
+    });
 };
 
-// Lance après DOMContentLoaded si le DOM est déjà prêt, sinon attend
+// Chargement immédiat au DOMContentLoaded — le chunk three-mesh est en async
+// donc le LCP n'est pas plombé (le navigateur fetch le chunk en parallèle du paint).
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadMeshWhenIdle, { once: true });
+  document.addEventListener('DOMContentLoaded', loadMesh, { once: true });
 } else {
-  loadMeshWhenIdle();
+  loadMesh();
 }
 
 // ============================================
@@ -178,13 +170,15 @@ if (!reduceMotion) {
 // Le wrapper fait 300dvh, le chapter est sticky 100dvh.
 // Au scroll dans le wrapper, on révèle progressivement les 3 lignes.
 // ============================================
+const isMobile = window.matchMedia("(max-width: 900px)").matches;
 const pivotWrappers = document.querySelectorAll<HTMLElement>(".pivot-wrapper");
 pivotWrappers.forEach((wrapper) => {
   const lines = wrapper.querySelectorAll<HTMLElement>(".pivot-line");
   if (lines.length === 0) return;
 
-  // Si reduced-motion : reveal direct
-  if (reduceMotion) {
+  // Mobile ou reduced-motion : reveal direct (sticky pin désactivé sur mobile,
+  // le scroll-progress n'a plus de sens).
+  if (isMobile || reduceMotion) {
     lines.forEach((l) => l.classList.add("is-revealed"));
     return;
   }

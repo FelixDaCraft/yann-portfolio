@@ -40,9 +40,9 @@ const VERT = /* glsl */ `
 const FRAG = /* glsl */ `
   precision mediump float;
   void main() {
-    // --platine #c0c0c8 à 0.12 alpha — perceptible mais inconscient.
-    // UI Designer reco : "un terrain qui respire, pas un fond qui performe".
-    gl_FragColor = vec4(0.752, 0.752, 0.784, 0.12);
+    // Platine #c0c0c8 à 0.50 alpha — discret mais clairement perceptible.
+    // (0.12-0.30 étaient invisibles en pratique sur fond bleuté + grain overlay.)
+    gl_FragColor = vec4(0.752, 0.752, 0.784, 0.50);
   }
 `
 
@@ -112,8 +112,15 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
   camera.position.z = 120
 
   const resize = (): void => {
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight)
-    const aspect = canvas.clientWidth / canvas.clientHeight
+    // Canvas est un replaced element : la taille doit être forcée via JS,
+    // pas seulement via CSS. window.innerWidth/innerHeight garantit
+    // la cohérence avec le viewport, peu importe l'état du layout.
+    const w = window.innerWidth
+    const h = window.innerHeight
+    renderer.setSize(w, h)
+    canvas.style.width  = w + 'px'
+    canvas.style.height = h + 'px'
+    const aspect = w / h
     // Ortho frustum couvre 220 unités de large (grille ~200)
     const half = 110
     camera.orthographic({
@@ -154,7 +161,7 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
   })
 
   // Inclinaison de perspective — sol qui fuit vers l'horizon
-  mesh.rotation.x = -0.28
+  mesh.rotation.x = -0.32
 
   // ── RAF loop ─────────────────────────────────────────────────────────────────
   // Pas de mouse interaction : décision UI/Archetypal (cliché +
@@ -169,9 +176,9 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
       uTime.value = t
     }
     renderer.render({ scene: mesh, camera })
-    // Fade-in au premier frame rendu
-    if (canvas.style.opacity === '0') {
-      canvas.style.opacity = '1'
+    // Fade-in au premier frame rendu — via classe CSS pour ne pas dépendre du style inline
+    if (!canvas.classList.contains('is-ready')) {
+      canvas.classList.add('is-ready')
     }
   }
   rafId = requestAnimationFrame(tick)
