@@ -14,6 +14,9 @@ importers:
       '@vanilla-extract/vite-plugin':
         specifier: ^5.2.2
         version: 5.2.2(@types/node@22.19.19)(esbuild@0.27.7)(jiti@1.21.7)(vite@8.0.12(@types/node@22.19.19)(esbuild@0.27.7)(jiti@1.21.7)(yaml@2.9.0))(yaml@2.9.0)
+      ogl:
+        specifier: ^1.0.11
+        version: 1.0.11
       open-props:
         specifier: ^1.7.23
         version: 1.7.23
@@ -658,6 +661,9 @@ packages:
 
   obug@2.1.1:
     resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
+
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
 
   open-props@1.7.23:
     resolution: {integrity: sha512-+xyrJmxV9QUBFbSwPROYhOg/FLXry+uuPr4R+B5EaE4556Oc18/8ZC/fL5A+/lbRSwNvA0Alh+C0KpyFWLmLZg==}
@@ -1349,6 +1355,8 @@ snapshots:
   node-releases@2.0.44: {}
 
   obug@2.1.1: {}
+
+  ogl@1.0.11: {}
 
   open-props@1.7.23: {}
 

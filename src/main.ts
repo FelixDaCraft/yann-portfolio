@@ -5,6 +5,43 @@
 import "./styles.css";
 
 // ============================================
+// 0. Three-mesh background — lazy loaded via requestIdleCallback
+//    pour ne pas plomber le LCP (canvas inséré avant <main>)
+// ============================================
+const loadMeshWhenIdle = (): void => {
+  const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
+  if (!canvas) return;
+
+  const doLoad = (): void => {
+    import('./three-mesh')
+      .then(({ initMesh3D }) => {
+        const cleanup = initMesh3D(canvas);
+        // Expose cleanup pour éventuel HMR Vite
+        if (import.meta.hot) {
+          import.meta.hot.dispose(cleanup);
+        }
+      })
+      .catch(() => {
+        // WebGL non dispo ou erreur réseau — le canvas reste invisible, pas de crash
+      });
+  };
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(doLoad, { timeout: 3000 });
+  } else {
+    // Fallback Safari : on attend un tick après le premier paint
+    setTimeout(doLoad, 200);
+  }
+};
+
+// Lance après DOMContentLoaded si le DOM est déjà prêt, sinon attend
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadMeshWhenIdle, { once: true });
+} else {
+  loadMeshWhenIdle();
+}
+
+// ============================================
 // 1. Year (footer)
 // ============================================
 const yearEl = document.getElementById("year");
