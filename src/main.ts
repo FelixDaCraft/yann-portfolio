@@ -141,36 +141,11 @@ if (!reduceMotion) {
 }
 
 // ============================================
-// 7a. Scenario chapters (chapter--scenario) — pivot-line reveal sans sticky-wrapper.
-// Même mise en forme que BabyMonitor, mais déclenchement par IntersectionObserver direct.
-// ============================================
-if (!reduceMotion) {
-  const scenIO = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-revealed");
-          scenIO.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.4, rootMargin: "0px 0px -10% 0px" },
-  );
-  document
-    .querySelectorAll<HTMLElement>(".chapter--scenario .pivot-line")
-    .forEach((line) => scenIO.observe(line));
-} else {
-  document
-    .querySelectorAll<HTMLElement>(".chapter--scenario .pivot-line")
-    .forEach((line) => line.classList.add("is-revealed"));
-}
-
-// ============================================
 // 7b. Sticky Pivot fade-in successive lines (BabyMonitor chapter 05)
 // Le wrapper fait 300dvh, le chapter est sticky 100dvh.
 // Au scroll dans le wrapper, on révèle progressivement les 3 lignes.
 // ============================================
-const isMobile = window.matchMedia("(max-width: 900px)").matches;
+const isMobile = window.matchMedia("(max-width: 1023px)").matches;
 const pivotWrappers = document.querySelectorAll<HTMLElement>(".pivot-wrapper");
 pivotWrappers.forEach((wrapper) => {
   const lines = wrapper.querySelectorAll<HTMLElement>(".pivot-line");
@@ -206,8 +181,13 @@ pivotWrappers.forEach((wrapper) => {
       });
     }
   };
+  let pivotResizeTimer: ReturnType<typeof setTimeout> | null = null;
+  const onPivotResize = (): void => {
+    if (pivotResizeTimer !== null) clearTimeout(pivotResizeTimer);
+    pivotResizeTimer = setTimeout(updatePivot, 150);
+  };
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", updatePivot, { passive: true });
+  window.addEventListener("resize", onPivotResize, { passive: true });
   updatePivot();
 });
 
@@ -230,7 +210,7 @@ if (!reduceMotion && fineHover) {
       tag.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -160%) scale(1)`;
       if (active) raf = requestAnimationFrame(loop);
     };
-    document.querySelectorAll<HTMLElement>(".labs-item, [data-cursor='view']").forEach((el) => {
+    document.querySelectorAll<HTMLElement>("[data-cursor='view']").forEach((el) => {
       el.addEventListener("mouseenter", () => {
         active = true;
         tag.classList.add("is-active");
@@ -253,6 +233,19 @@ if (!reduceMotion && fineHover) {
         { passive: true },
       );
     });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && raf !== null) {
+        cancelAnimationFrame(raf);
+        raf = null;
+        active = false;
+        tag.classList.remove("is-active");
+      }
+    });
+    document.addEventListener("touchstart", () => {
+      active = false;
+      tag.classList.remove("is-active");
+      if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
+    }, { passive: true });
   }
 }
 

@@ -36,6 +36,8 @@
     html { scroll-behavior: smooth; }
   }
   [id] { scroll-margin-top: 2rem; }
+  @media (max-width: 767px) { [id] { scroll-margin-top: 4rem; } }
+  @media (min-width: 768px) and (max-width: 1023px) { [id] { scroll-margin-top: 3rem; } }
 
   body {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -80,9 +82,10 @@
   a { color: inherit; text-decoration: none; }
 
   :focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 1px rgba(192, 192, 200, 0.7), 0 0 0 3px rgba(192, 192, 200, 0.25);
+    outline: 2px solid var(--platine-bright);
+    outline-offset: 3px;
     border-radius: 4px;
+    box-shadow: none;
   }
 }
 
@@ -139,13 +142,23 @@
     font-weight: 500;
   }
   .status-bar a:first-child:hover { background: #fff; }
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     .status-bar {
-      top: 0.75rem; right: 0.75rem; gap: 0.15rem; padding: 0.35rem;
-      font-size: 0.55rem; letter-spacing: 0.08em;
+      top: 0.75rem; right: 0.75rem;
+      gap: 0.15rem; padding: 0.35rem;
+      font-size: 0.6rem; letter-spacing: 0.10em;
     }
-    .status-bar a { padding: 0.3rem 0.55rem; }
-    .status-bar a:nth-child(n+5) { display: none; } /* hide last 2 on mobile */
+    .status-bar a {
+      padding: 0.45rem 0.6rem;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    /* Phones : keep the 3 highest-intent anchors — Hire · Projets · Contact.
+       Hide Mission (2), Output (3), Parcours (5). */
+    .status-bar a:nth-child(2),
+    .status-bar a:nth-child(3),
+    .status-bar a:nth-child(5) { display: none; }
   }
   @keyframes pill-in {
     from { opacity: 0; transform: translateY(-8px); }
@@ -161,53 +174,12 @@
     50%      { opacity: 1;    transform: scale(1.25); }
   }
 
-  /* Heartbeat (mini-EKG signature) — replaces the generic pulse dot
-     Inspired by a vital sign monitor : 3 bars beating irregularly in sauge.
-     Says "ce mec maintient des systèmes vivants" — pas un badge SaaS générique. */
-  .heartbeat {
-    display: inline-flex; align-items: flex-end; gap: 2px;
-    height: 14px; width: 16px; flex-shrink: 0;
-  }
-  .hb-bar {
-    width: 2px; height: 4px;
-    background: var(--sauge); border-radius: 1px;
-    transform-origin: bottom;
-    animation: heartbeat 1.6s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-  .hb-bar[data-bar="0"] { animation-delay:   0ms; }
-  .hb-bar[data-bar="1"] { animation-delay: 160ms; }
-  .hb-bar[data-bar="2"] { animation-delay: 320ms; }
-  @keyframes heartbeat {
-    0%   { transform: scaleY(1);   opacity: 0.5; }
-    20%  { transform: scaleY(3.2); opacity: 1;   }
-    40%  { transform: scaleY(0.6); opacity: 0.6; }
-    60%  { transform: scaleY(2.1); opacity: 1;   }
-    80%  { transform: scaleY(1);   opacity: 0.5; }
-    100% { transform: scaleY(1);   opacity: 0.5; }
-  }
   /* Style for TODO-flagged placeholder values that Yann must validate */
   [data-todo] {
     color: var(--amber);
     border-bottom: 1px dotted var(--amber-dim);
     cursor: help;
   }
-
-  /* Status-bar nav shortcuts (Architect reco — "Projets · Contact" toujours visibles) */
-  .status-bar .nav-links {
-    display: inline-flex; align-items: center; gap: 0.65rem;
-    padding-right: 0.4rem; margin-right: 0.2rem;
-    border-right: 1px solid var(--rule);
-  }
-  .status-bar .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem; letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-dim);
-    transition: color 200ms;
-  }
-  .status-bar .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 720px) { .status-bar .nav-links { display: none; } }
 
   /* ============================================
      Active Theory-style cursor follower
@@ -232,22 +204,6 @@
   }
   .cursor-tag.is-active { opacity: 1; transform: translate(-50%, -160%) scale(1); }
   @media (hover: none), (pointer: coarse) { .cursor-tag { display: none; } }
-  .status-bar .label { color: var(--ink-muted); }
-  .status-bar .label strong { color: var(--ink); font-weight: 500; }
-  .status-bar .cta {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.5rem 0.95rem;
-    background: var(--platine-bright); color: var(--bg);
-    border-radius: 999px; font-weight: 500;
-    transition: background 200ms, box-shadow 250ms;
-  }
-  .status-bar .cta:hover { background: #fff; box-shadow: 0 0 24px rgba(192, 192, 200, 0.25); }
-  .status-bar .cta .arrow { transition: transform 200ms var(--ease-out-expo); }
-  .status-bar .cta:hover .arrow { transform: translateX(3px); }
-  @media (max-width: 720px) {
-    .status-bar { top: 0.75rem; right: 0.75rem; padding: 0.45rem 0.5rem 0.45rem 0.7rem; font-size: 0.65rem; gap: 0.5rem; }
-    .status-bar .label { max-width: 12ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  }
 
   /* Footer */
   footer {
@@ -258,7 +214,7 @@
     font-size: 0.625rem; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--ink-dim);
   }
-  @media (min-width: 700px) { footer { grid-template-columns: 1fr auto; } }
+  @media (min-width: 768px) { footer { grid-template-columns: 1fr auto; } }
   footer a { color: var(--ink-muted); transition: color 200ms; }
   footer a:hover { color: var(--ink); }
 }
@@ -270,7 +226,7 @@
     padding: 6rem clamp(1.5rem, 6vw, 6rem) 5rem;
     position: relative;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     .chapter { min-height: auto; padding: 4rem 1.25rem 3rem; }
   }
   .chapter:nth-of-type(even)::before {
@@ -306,7 +262,25 @@
     transition: font-variation-settings 900ms var(--ease-out-expo), color 400ms;
   }
   /* Letter-spacing scale-dependent — plus serré à grande taille */
-  @media (max-width: 720px)  { .word { letter-spacing: -0.025em; } }
+  @media (max-width: 767px) {
+    .word {
+      letter-spacing: -0.025em;
+      margin-left: 0;
+    }
+  }
+  @media (max-width: 479px) {
+    .word {
+      font-size: clamp(2.8rem, 11vw, 4rem);
+    }
+    .chapter--case .word {
+      font-size: clamp(2rem, 9vw, 3.5rem);
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+    .chapter--closing .word {
+      font-size: clamp(1.8rem, 9vw, 2.5rem);
+    }
+  }
   @media (min-width: 1200px) { .word { letter-spacing: -0.055em; } }
   .word-part { display: inline-block; white-space: nowrap; }
 
@@ -408,12 +382,12 @@
     text-transform: uppercase; color: var(--ink-dim);
     white-space: nowrap;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     .chapter--neg { grid-template-columns: 1fr; }
     .chapter--neg .chapter__num,
     .chapter--neg .neg-meta,
     .chapter--neg .neg-portrait { grid-column: 1; grid-row: auto; justify-self: start; text-align: left; }
-    .chapter--neg .neg-meta { font-size: 0.6rem; line-height: 1.8; }
+    .chapter--neg .neg-meta { font-size: 0.6rem; line-height: 1.8; text-align: left; }
     .chapter--neg .word { grid-column: 1; grid-row: auto; }
   }
 
@@ -460,6 +434,8 @@
     color: var(--amber);
     letter-spacing: -0.04em;
     line-height: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .chapter--dv .dv-key {
     font-family: 'JetBrains Mono', monospace;
@@ -473,13 +449,46 @@
     text-shadow: 0 0 40px rgba(10, 10, 14, 0.6);
     z-index: 2;
   }
-  @media (max-width: 720px) {
+  /* Tablet + phone (≤1023px) : de-overlay the data layer — the word stacks
+     below the bar chart instead of being layered on top of it (z-index clash). */
+  @media (max-width: 1023px) {
+    .chapter--dv {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      min-height: auto;
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+    .chapter--dv > * { grid-area: unset; width: 100%; }
+    .chapter--dv .chapter__num { padding-top: 0; }
     .chapter--dv .dv-stats {
-    grid-template-columns: repeat(2, 1fr);
-    height: auto; min-height: 40%; padding-bottom: 4rem; gap: 1.5rem 0.8rem;
+      height: auto;
+      padding-bottom: 0;
+    }
+    .chapter--dv .dv-bar { min-height: 4rem; height: 6rem; }
+    .chapter--dv .word {
+      text-align: left;
+      align-self: auto;
+      justify-self: auto;
+    }
   }
-  .chapter--dv .dv-bar { min-height: 4rem; height: 5rem; }
-  .chapter--dv .word { font-size: clamp(2.5rem, 18vw, 6rem); }
+  /* Phones : stats collapse to 2 columns + tighter type. */
+  @media (max-width: 767px) {
+    .chapter--dv .dv-stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 0.8rem;
+    }
+    .chapter--dv .dv-bar { height: 5rem; }
+    .chapter--dv .word { font-size: clamp(2.5rem, 14vw, 4.5rem); }
+    .chapter--dv .dv-val {
+      font-size: clamp(1rem, 5.5vw, 1.4rem);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      line-height: 1.2;
+    }
+    .chapter--dv .dv-key { font-size: 0.5rem; }
   }
 
   /* ============================================
@@ -507,7 +516,7 @@
   .manifesto .terms {
     margin-top: 2.5rem; padding-top: 1.5rem;
     border-top: 1px solid var(--rule);
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     gap: 1rem 2rem;
     font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
   }
@@ -520,71 +529,19 @@
   .manifesto .terms .ok { color: var(--sauge); }
 
   /* ============================================
-     Respirations 50vh — Pentagram-style word-as-background
-     ============================================ */
-  .respiration {
-    position: relative; overflow: hidden;
-    min-height: 50vh;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    gap: 1.5rem;
-    padding: 4rem clamp(1.5rem, 6vw, 6rem);
-    text-align: center;
-  }
-  .respiration--right { align-items: flex-end; text-align: right; }
-  /* Le data-bg-word devient le fond typographique de la section */
-  .respiration::before {
-    content: attr(data-bg-word);
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: clamp(8rem, 25vw, 22rem);
-    font-variation-settings: "wght" 900, "opsz" 144, "SOFT" 0;
-    letter-spacing: -0.06em; line-height: 1;
-    color: var(--ink);
-    opacity: 0.035;
-    user-select: none; pointer-events: none;
-    white-space: nowrap;
-    z-index: 0;
-  }
-  .respiration > * { position: relative; z-index: 1; }
-  .resp-ast {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-variation-settings: "wght" 300, "opsz" 144, "SOFT" 80;
-    color: var(--ink-dim);
-    letter-spacing: 0.5em;
-    opacity: 0.55;
-    user-select: none;
-  }
-  .resp-italic {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: clamp(1.25rem, 2.4vw, 1.8rem);
-    font-variation-settings: "wght" 300, "opsz" 144, "ital" 1;
-    font-style: italic;
-    color: var(--ink-muted);
-    margin: 0;
-    max-width: 40rem;
-    line-height: 1.5;
-  }
-  .resp-pull {
-    font-family: 'Fraunces', Georgia, serif;
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-variation-settings: "wght" 500, "opsz" 144;
-    color: var(--platine);
-    margin: 0; max-width: 32rem;
-    line-height: 1.1; letter-spacing: -0.03em;
-  }
-  .resp-pull .em { color: var(--amber); }
-
-  /* ============================================
      Project meta (case studies 04, 06)
      ============================================ */
   .project-meta {
     margin-top: 2.5rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
     gap: 1.5rem 3rem; max-width: 64rem;
     padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 767px) {
+    .project-meta {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem 1.5rem;
+    }
   }
   .project-meta dt {
     font-family: 'JetBrains Mono', monospace;
@@ -644,22 +601,31 @@
     .pivot-wrapper { height: auto; }
     .pivot-wrapper .chapter--pivot { position: static; }
   }
-  /* Mobile : virer le sticky pin (8 viewports de scroll = inutilisable).
+  /* Mobile/tablet : virer le sticky pin (8 viewports de scroll = inutilisable).
      Chaque case study devient un chapter normal, lignes affichées direct. */
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     .pivot-wrapper { height: auto; }
     .pivot-wrapper .chapter--pivot {
       position: static;
       min-height: auto;
       height: auto;
     }
-    .pivot-line { clip-path: inset(0); }
+    .pivot-line {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pivot-line:last-child { border-bottom: none; }
   }
-  .pivot-wrapper .chapter--pivot {
-    position: sticky;
-    top: 0;
-    min-height: 100dvh;
-    height: 100dvh;
+  /* Sticky pin = desktop only (≥1024px). Gated by min-width so the
+     max-width:1023px disable block above can never be re-overridden by an
+     unconditional rule appearing later in source order (the original bug). */
+  @media (min-width: 1024px) {
+    .pivot-wrapper .chapter--pivot {
+      position: sticky;
+      top: 0;
+      min-height: 100dvh;
+      height: 100dvh;
+    }
   }
   .pivot-stack {
     margin-top: 3rem;
@@ -682,7 +648,20 @@
     gap: 2.5rem;
     width: 100%;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .header-grid {
+      grid-template-columns: minmax(180px, 16rem) 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .header-portrait {
+      max-width: 16rem;
+      aspect-ratio: 3 / 4;
+      margin-bottom: 0;
+    }
+    .header-content .word { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+  }
+  @media (min-width: 1024px) {
     .header-grid {
       grid-template-columns: minmax(280px, 22rem) 1fr;
       gap: 4rem;
@@ -696,11 +675,11 @@
     overflow: hidden;
     cursor: pointer;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 767px) {
     .header-portrait {
-      max-width: 14rem;
+      max-width: 10rem;
       aspect-ratio: 1 / 1;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .header-content .word { font-size: clamp(2.5rem, 14vw, 5rem); }
     .header-contact { font-size: 0.8rem; }
@@ -752,6 +731,9 @@
   .header-contact dd { margin: 0; color: var(--ink); }
   .header-contact dd.amber { color: var(--amber); }
   .header-contact a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     border-bottom: 1px solid var(--ink-dim);
     transition: border-color 200ms, color 200ms;
   }
@@ -762,15 +744,30 @@
     min-height: 60vh;
     padding: 5rem clamp(1.5rem, 6vw, 6rem) 6rem;
   }
+  @media (max-width: 767px) {
+    .chapter--closing {
+      min-height: auto;
+      padding: 3.5rem 1.25rem 4rem;
+    }
+  }
   .chapter--closing .word { font-size: clamp(2.5rem, 8vw, 7rem); }
   .closing-actions {
     margin-top: 2.5rem;
     display: flex; flex-wrap: wrap; gap: 1rem;
     align-items: stretch;
   }
-  @media (max-width: 720px) {
+  @media (max-width: 767px) {
     .closing-actions { flex-direction: column; align-items: stretch; }
     .closing-actions .closing-btn { justify-content: center; text-align: center; }
+  }
+  @media (max-width: 479px) {
+    .closing-btn--ghost {
+      font-size: 0.75rem;
+      letter-spacing: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
   .closing-btn {
     display: inline-flex; align-items: center; gap: 0.6rem;
@@ -814,6 +811,13 @@
     letter-spacing: -0.01em;
     color: var(--ink-muted);
   }
+  @media (max-width: 767px) {
+    .case-lead {
+      margin-left: 0;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+  }
 
   /* Hello Monday-style clip-path reveal — "venitian blind" qui lève
      en lieu et place du fade/translate générique. Métaphore : un protocole
@@ -823,11 +827,17 @@
     font-size: clamp(0.95rem, 1.6vw, 1.15rem);
     line-height: 1.65;
     color: var(--ink);
-    clip-path: inset(0 0 100% 0);
-    transition: clip-path 800ms var(--ease-out-expo);
-    will-change: clip-path;
   }
-  .pivot-line.is-revealed { clip-path: inset(0 0 0% 0); }
+  /* Clip-path scroll-reveal is a desktop-only mechanism (paired with the
+     sticky pin). On ≤1023px the lines are always visible, even without JS. */
+  @media (min-width: 1024px) {
+    .pivot-line {
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 800ms var(--ease-out-expo);
+      will-change: clip-path;
+    }
+    .pivot-line.is-revealed { clip-path: inset(0 0 0% 0); }
+  }
   .pivot-line .em { color: var(--amber); }
   .pivot-line .em-sauge { color: var(--sauge); }
   .pivot-line .stack { color: var(--platine); }
@@ -854,44 +864,31 @@
   }
   .tech-table td:last-child { color: var(--ink); }
   .tech-table .stack { color: var(--platine); font-size: 0.8rem; }
-
-  /* ============================================
-     Labs (chapter 08)
-     ============================================ */
-  .labs-list {
-    margin-top: 2rem;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem; max-width: 64rem;
+  @media (max-width: 767px) {
+    .tech-table { font-size: 0.78rem; }
+    .tech-table tr {
+      display: flex;
+      flex-direction: column;
+      padding: 0.85rem 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: none;
+    }
+    .tech-table tr:last-child { border-bottom: 1px solid var(--rule); }
+    .tech-table td {
+      display: block;
+      padding: 0;
+      border: none;
+      width: auto;
+    }
+    .tech-table td:first-child {
+      width: auto;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0.3rem;
+      font-size: 0.65rem;
+    }
+    .tech-table td:last-child { padding-top: 0; }
   }
-  .labs-item {
-    padding: 1.25rem; border: 1px solid var(--rule); border-radius: 12px;
-    background: rgba(255, 255, 255, 0.015);
-    transition: border-color 250ms, background 250ms;
-  }
-  .labs-item:hover { border-color: var(--rule-strong); background: rgba(255, 255, 255, 0.03); }
-  .labs-item .kind {
-    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-dim);
-  }
-  .labs-item .name {
-    margin: 0.5rem 0 0.4rem;
-    font-family: 'Fraunces', serif; font-size: 1.25rem;
-    font-variation-settings: "wght" 500, "opsz" 144;
-    color: var(--ink);
-  }
-  .labs-item .desc { font-size: 0.8rem; line-height: 1.55; color: var(--ink-muted); }
-  .labs-vibe {
-    margin-top: 3rem; padding: 1.5rem 1.75rem;
-    border-left: 2px solid var(--sauge);
-    background: rgba(126, 169, 146, 0.05);
-    font-family: 'Fraunces', serif; font-style: italic;
-    font-variation-settings: "wght" 400, "opsz" 144, "ital" 1;
-    font-size: 1.05rem; line-height: 1.6;
-    color: var(--ink-muted);
-    max-width: 48rem;
-  }
-  .labs-vibe strong { color: var(--ink); font-weight: 500; }
-  .labs-vibe a { color: var(--platine-bright); border-bottom: 1px solid var(--ink-dim); }
 
   /* ============================================
      Final chapter (09)
@@ -899,7 +896,11 @@
   .chapter--final {
     display: grid; grid-template-columns: 1fr; gap: 3rem; padding-bottom: 8rem;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .chapter--final { grid-template-columns: 1fr; }
+    .portrait { max-width: 14rem; aspect-ratio: 1 / 1; }
+  }
+  @media (min-width: 1024px) {
     .chapter--final {
       grid-template-columns: 1.3fr 0.7fr;
       align-items: end; gap: 4rem;

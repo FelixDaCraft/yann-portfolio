@@ -36,7 +36,7 @@ const VERT = /* glsl */ `
 
   void main() {
     vec3 pos = position;
-    float t = uTime * 0.0008;
+    float t = uTime * 0.00056; // 30% slower than original 0.0008
 
     float h = waveAt(pos.xz, t);
     pos.y += h * uAmplitude;
@@ -125,7 +125,7 @@ function buildTriangulatedPlane(
 export type CleanupFn = () => void
 
 export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
-  const isMobile     = window.innerWidth < 768
+  const isMobile     = window.innerWidth < 1024
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const segs = isMobile ? 70 : 110
@@ -135,7 +135,7 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
   const renderer = new Renderer({
     canvas,
     alpha: true,
-    antialias: true,            // antialias bénéfique pour fines lignes wireframe
+    antialias: !isMobile,       // antialias bénéfique pour fines lignes wireframe; désactivé sur mobile pour économiser GPU
     powerPreference: 'low-power',
     dpr: Math.min(window.devicePixelRatio, 2),
   })
@@ -150,6 +150,8 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
   camera.position.set(0, 50, 30)
   camera.lookAt([0, -10, -150] as unknown as Vec3)
 
+  let resizeTimer = 0
+  let lastResizeW = 0
   const resize = (): void => {
     const w = window.innerWidth
     const h = window.innerHeight
@@ -157,9 +159,16 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
     canvas.style.width  = w + 'px'
     canvas.style.height = h + 'px'
     camera.perspective({ aspect: w / h })
+    lastResizeW = w
+  }
+  const onResize = (): void => {
+    // Skip pure-height changes (iOS/Android URL bar show/hide)
+    if (window.innerWidth === lastResizeW) return
+    clearTimeout(resizeTimer)
+    resizeTimer = window.setTimeout(resize, 150)
   }
   resize()
-  window.addEventListener('resize', resize, { passive: true })
+  window.addEventListener('resize', onResize, { passive: true })
 
   // ── Geometry + Mesh ─────────────────────────────────────────────────────────
   const geometry = buildTriangulatedPlane(gl, segs, planeSize)
@@ -200,7 +209,7 @@ export function initMesh3D(canvas: HTMLCanvasElement): CleanupFn {
   // ── Cleanup ─────────────────────────────────────────────────────────────────
   return (): void => {
     cancelAnimationFrame(rafId)
-    window.removeEventListener('resize', resize)
+    window.removeEventListener('resize', onResize)
     document.removeEventListener('visibilitychange', onVisibility)
     geometry.remove()
     program.remove()
