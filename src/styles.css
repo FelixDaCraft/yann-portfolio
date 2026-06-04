@@ -119,8 +119,8 @@
   /* Nav bar — pure liens d'ancrage, plus de heartbeat / TJM */
   .status-bar {
     position: fixed; top: 1.25rem; right: 1.25rem; z-index: 10;
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.5rem 0.5rem;
+    display: inline-flex; align-items: center;
+    padding: 0.5rem;
     background: rgba(13, 13, 19, 0.78);
     border: 1px solid var(--rule);
     border-radius: 999px;
@@ -130,35 +130,76 @@
     animation: pill-in 700ms var(--ease-out-expo) 200ms both;
     transition: transform 400ms var(--ease-spring);
   }
+  .nav-links { display: inline-flex; align-items: center; gap: 0.4rem; }
   .status-bar a {
     color: var(--ink-muted);
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
+    white-space: nowrap;
     transition: color 200ms, background 200ms;
   }
   .status-bar a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.05); }
-  .status-bar a:first-child {
+  .nav-links a:first-child {
     color: var(--bg); background: var(--platine-bright);
     font-weight: 500;
   }
-  .status-bar a:first-child:hover { background: #fff; }
-  @media (max-width: 767px) {
-    .status-bar {
-      top: 0.75rem; right: 0.75rem;
-      gap: 0.15rem; padding: 0.35rem;
-      font-size: 0.6rem; letter-spacing: 0.10em;
+  .nav-links a:first-child:hover { background: #fff; }
+
+  /* Hamburger toggle — hidden on desktop, shown ≤1023px */
+  .nav-toggle {
+    display: none;
+    width: 38px; height: 38px;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; padding: 0; margin: 0;
+    background: none; border: none; cursor: pointer;
+    border-radius: 999px;
+  }
+  .nav-toggle span {
+    display: block; width: 19px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: transform 280ms var(--ease-out-expo), opacity 200ms;
+  }
+
+  @media (max-width: 1023px) {
+    .status-bar { top: 0.85rem; right: 0.85rem; padding: 0.25rem; }
+    .nav-toggle { display: inline-flex; }
+    .status-bar.is-open .nav-toggle span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+    .status-bar.is-open .nav-toggle span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 0.6rem); right: 0;
+      flex-direction: column; align-items: stretch;
+      gap: 0.15rem;
+      min-width: 13rem;
+      padding: 0.5rem;
+      background: rgba(13, 13, 19, 0.92);
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+      opacity: 0; visibility: hidden;
+      transform: translateY(-10px) scale(0.97);
+      transform-origin: top right;
+      transition: opacity 220ms, transform 260ms var(--ease-out-expo), visibility 0s 260ms;
     }
-    .status-bar a {
-      padding: 0.45rem 0.6rem;
+    .status-bar.is-open .nav-links {
+      opacity: 1; visibility: visible;
+      transform: translateY(0) scale(1);
+      transition: opacity 220ms, transform 260ms var(--ease-out-expo);
+    }
+    .nav-links a {
+      padding: 0.7rem 0.9rem;
       min-height: 44px;
-      display: inline-flex;
-      align-items: center;
+      display: flex; align-items: center;
+      border-radius: 12px;
+      font-size: 0.72rem; letter-spacing: 0.14em;
     }
-    /* Phones : keep the 3 highest-intent anchors — Hire · Projets · Contact.
-       Hide Mission (2), Output (3), Parcours (5). */
-    .status-bar a:nth-child(2),
-    .status-bar a:nth-child(3),
-    .status-bar a:nth-child(5) { display: none; }
+    .nav-links a:first-child,
+    .nav-links a:first-child:hover {
+      color: var(--ink-muted); background: none; font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.05); }
   }
   @keyframes pill-in {
     from { opacity: 0; transform: translateY(-8px); }
@@ -320,6 +361,69 @@
   .chapter__after p + p { margin-top: 1rem; }
   .chapter__after .em { color: var(--ink); }
   .chapter__after .em-sauge { color: var(--sauge); }
+
+  /* ============================================
+     Composition Stack — langages & frameworks (chapter 02)
+     ============================================ */
+  .skills-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.75rem 4rem;
+    max-width: 60rem;
+    align-items: start;
+  }
+  @media (min-width: 768px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .skills-cat {
+    margin: 0 0 1.4rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink-dim);
+    font-weight: 400;
+  }
+  .skill-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 1.15rem;
+  }
+  .skill-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.45rem;
+  }
+  .skill-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ink);
+  }
+  .skill-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.05em; color: var(--amber);
+    font-variant-numeric: tabular-nums;
+  }
+  .skill-track {
+    position: relative; height: 3px; border-radius: 999px;
+    background: var(--rule); overflow: hidden;
+  }
+  .skill-fill {
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: var(--lvl, 0%);
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--sauge), var(--amber));
+  }
+  /* Fill-in animation on scroll — enhancement only (JS arms it; reduced-motion shows full bars). */
+  @media (prefers-reduced-motion: no-preference) {
+    .chapter--stack[data-armed="true"] .skill-fill {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.1s var(--ease-out-expo);
+      transition-delay: var(--d, 0ms);
+    }
+    .chapter--stack[data-armed="true"].is-visible .skill-fill {
+      transform: scaleX(1);
+    }
+  }
 
   /* ============================================
      Composition A — Negative Space (chapter 01)
@@ -672,14 +776,14 @@
     position: relative; margin: 0;
     width: 100%; max-width: 22rem;
     aspect-ratio: 3 / 4;
-    overflow: hidden;
+    overflow: visible;
     cursor: pointer;
   }
   @media (max-width: 767px) {
     .header-portrait {
       max-width: 10rem;
       aspect-ratio: 1 / 1;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.75rem;
     }
     .header-content .word { font-size: clamp(2.5rem, 14vw, 5rem); }
     .header-contact { font-size: 0.8rem; }

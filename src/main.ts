@@ -118,7 +118,80 @@ if (!reduceMotion && fineHover) {
 }
 
 // ============================================
-// 6. Data Layer bar reveal (chapter 02) — animate scaleY when in viewport
+// 5b. Mobile nav — hamburger toggle (≤1023px)
+// ============================================
+const navBar = document.querySelector<HTMLElement>(".status-bar");
+const navToggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+const navLinksEl = document.getElementById("nav-links");
+if (navBar && navToggle && navLinksEl) {
+  const setNav = (open: boolean): void => {
+    navBar.classList.toggle("is-open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  };
+  navToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const willOpen = !navBar.classList.contains("is-open");
+    setNav(willOpen);
+    // Focus management : entrer dans le menu à l'ouverture (WCAG 2.4.3)
+    if (willOpen) navLinksEl.querySelector<HTMLAnchorElement>("a")?.focus();
+  });
+  navLinksEl.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => setNav(false)),
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navBar.classList.contains("is-open")) {
+      setNav(false);
+      navToggle.focus(); // rendre le focus au bouton à la fermeture clavier
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (navBar.classList.contains("is-open") && !navBar.contains(e.target as Node)) {
+      setNav(false);
+    }
+  });
+}
+
+// ============================================
+// 5c. Stack skill bars — progressbar semantics + scroll-fill animation
+// ============================================
+const stackSection = document.querySelector<HTMLElement>(".chapter--stack");
+if (stackSection) {
+  // a11y : exposer chaque barre comme un progressbar nommé (toujours, indép. du motion)
+  stackSection.querySelectorAll<HTMLElement>(".skill").forEach((skill) => {
+    const track = skill.querySelector<HTMLElement>(".skill-track");
+    const name = skill.querySelector(".skill-name")?.textContent?.trim() ?? "";
+    const pct = skill.querySelector(".skill-pct")?.textContent?.trim() ?? "";
+    if (track && pct) {
+      track.setAttribute("role", "progressbar");
+      track.setAttribute("aria-valuenow", pct);
+      track.setAttribute("aria-valuemin", "0");
+      track.setAttribute("aria-valuemax", "100");
+      track.setAttribute("aria-label", `${name} : ${pct} sur 100`);
+    }
+  });
+
+  // Remplissage animé au scroll — enhancement, désactivé en reduced-motion.
+  if (!reduceMotion) {
+    stackSection.dataset["armed"] = "true";
+    void stackSection.getBoundingClientRect(); // commit l'état replié avant le reveal (anti-FOUC)
+    const skillIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            stackSection.classList.add("is-visible");
+            skillIO.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    skillIO.observe(stackSection);
+  }
+}
+
+// ============================================
+// 6. Data Layer bar reveal (chapter 04) — animate scaleY when in viewport
 // ============================================
 if (!reduceMotion) {
   const dvIO = new IntersectionObserver(
