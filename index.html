@@ -91,6 +91,7 @@
             <div><dt>Téléphone</dt><dd><a href="tel:+33626735597">+33 6 26 73 55 97</a></dd></div>
             <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/yann-maillot/" target="_blank" rel="noopener">/in/yann-maillot ↗</a></dd></div>
             <div><dt>GitHub</dt><dd><a href="https://github.com/FelixDaCraft" target="_blank" rel="noopener">@FelixDaCraft ↗</a></dd></div>
+            <div><dt>CV</dt><dd><a href="/cv-yann-maillot.pdf" class="js-cv" download>Télécharger le PDF ↓</a></dd></div>
             <div><dt>Tarif</dt><dd class="amber">À discuter · 3j/sem · Remote · Partout en France</dd></div>
           </dl>
         </div>
@@ -190,7 +191,7 @@
     <!-- 05 — CupMetrics (sticky pivot · 200dvh)       -->
     <!-- ============================================ -->
     <div class="pivot-wrapper" id="projects">
-    <section class="chapter chapter--case chapter--pivot">
+    <section class="chapter chapter--case chapter--pivot" data-track="cupmetrics">
       <div class="chapter__num">05 · Case study 01 · CupMetrics</div>
       <h2 class="word">CUPMETRICS.</h2>
       <p class="case-lead">Anonymiser un concours sans biais — sans que les jurés voient qui produit quoi.</p>
@@ -228,7 +229,7 @@
     <!-- 06 — BABYMONITOR (sticky pivot · 200dvh)      -->
     <!-- ============================================ -->
     <div class="pivot-wrapper">
-      <section class="chapter chapter--case chapter--pivot">
+      <section class="chapter chapter--case chapter--pivot" data-track="babymonitor">
         <div class="chapter__num">06 · Case study 02</div>
         <h2 class="word">BABYMONITOR.</h2>
         <p class="case-lead">Quand un protocole propriétaire refuse de parler — on le démonte.</p>
@@ -263,7 +264,7 @@
     <!-- 07 — Ringdo (sticky pivot · 200dvh)           -->
     <!-- ============================================ -->
     <div class="pivot-wrapper">
-    <section class="chapter chapter--case chapter--pivot">
+    <section class="chapter chapter--case chapter--pivot" data-track="ringdo">
       <div class="chapter__num">07 · Case study 03</div>
       <h2 class="word">RINGDO.</h2>
       <p class="case-lead">Transcrire chaque appel — automatiquement, depuis Android.</p>
@@ -296,7 +297,7 @@
     <!-- 08 — Cabinet Psychologue (sticky pivot · 200dvh) -->
     <!-- ============================================ -->
     <div class="pivot-wrapper">
-    <section class="chapter chapter--case chapter--pivot">
+    <section class="chapter chapter--case chapter--pivot" data-track="psy">
       <div class="chapter__num">08 · Case study 04</div>
       <h2 class="word">CABINET PSYCHOLOGUE.</h2>
       <p class="case-lead">Un cabinet de psychologue, mis en ligne — vraiment.</p>
@@ -373,7 +374,35 @@
         <a href="https://www.linkedin.com/in/yann-maillot/" target="_blank" rel="noopener" class="closing-btn closing-btn--ghost">
           LinkedIn ↗
         </a>
+        <a href="/cv-yann-maillot.pdf" download id="cv-download" class="closing-btn closing-btn--ghost js-cv">
+          CV (PDF) ↓
+        </a>
       </div>
+
+      <p class="case-lead contact-form-lead">Ou laisse-moi un message ici — je te réponds par email :</p>
+      <form class="contact-form" id="contact-form" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp-field" />
+        <div class="contact-form__row">
+          <label>
+            <span>Nom</span>
+            <input type="text" name="name" required maxlength="100" autocomplete="name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required maxlength="200" autocomplete="email" />
+          </label>
+        </div>
+        <label>
+          <span>Message</span>
+          <textarea name="message" required maxlength="4000" rows="6"></textarea>
+        </label>
+        <div class="contact-form__footer">
+          <button type="submit" class="closing-btn closing-btn--primary">
+            Envoyer <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="contact-form__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </section>
   </main>
 

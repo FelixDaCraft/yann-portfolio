@@ -3,6 +3,7 @@ services:
   # yann-portfolio — yann.aynn.fr
   # Bound on 127.0.0.1:3019 — routed by the Cloudflare Tunnel
   # running on the homelab host (same pattern as platinum-cbd-cup).
+  # nginx sert le statique ET proxifie /api/ → yann-api:3000.
   # ============================================
   yann-portfolio:
     image: yann-portfolio:latest
@@ -13,9 +14,39 @@ services:
       dockerfile: Dockerfile
     ports:
       - "127.0.0.1:3019:80"
+    depends_on:
+      - yann-api
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
+
+  # ============================================
+  # yann-api — backoffice (analytics cookieless + inbox contact)
+  # Aucun port publié : accessible uniquement via le réseau compose.
+  # Secrets dans /opt/yann-portfolio/.env (ADMIN_PASSWORD, SESSION_SECRET) —
+  # hors Git, survit au `git reset --hard` du deploy.
+  # ============================================
+  yann-api:
+    image: yann-api:latest
+    container_name: yann-api
+    restart: unless-stopped
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      - DB_PATH=/data/yann.db
+    volumes:
+      - yann-data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  yann-data:

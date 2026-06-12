@@ -3,6 +3,7 @@
  * Vite entry point. Imports global CSS + boots interactions.
  */
 import "./styles.css";
+import { initTracking, getVisitContext, getSessionId } from "./track";
 
 // ============================================
 // 0. Three-mesh background — lazy loaded via requestIdleCallback
@@ -338,4 +339,61 @@ if (clockEl) {
   };
   tick();
   setInterval(tick, 30_000);
+}
+
+// ============================================
+// 10. Analytics cookieless (voir track.ts — DNT / opt-out respectés)
+// ============================================
+initTracking();
+
+// ============================================
+// 11. Formulaire de contact → POST /api/contact (+ contexte de visite)
+// ============================================
+const contactForm = document.getElementById("contact-form") as HTMLFormElement | null;
+if (contactForm) {
+  const statusEl = contactForm.querySelector<HTMLElement>(".contact-form__status");
+  const submitBtn = contactForm.querySelector<HTMLButtonElement>("button[type='submit']");
+  const setStatus = (text: string, kind: "success" | "error" | ""): void => {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.classList.toggle("is-success", kind === "success");
+    statusEl.classList.toggle("is-error", kind === "error");
+  };
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!contactForm.reportValidity()) return;
+
+    const data = new FormData(contactForm);
+    const payload = {
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      message: String(data.get("message") ?? ""),
+      website: String(data.get("website") ?? ""),
+      s: getSessionId(),
+      ctx: getVisitContext(),
+    };
+
+    if (submitBtn) submitBtn.disabled = true;
+    setStatus("Envoi en cours…", "");
+
+    fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          contactForm.reset();
+          setStatus("Message envoyé — je te réponds vite.", "success");
+        } else {
+          const body = (await res.json().catch(() => null)) as { error?: string } | null;
+          setStatus(body?.error ?? "Échec de l'envoi, réessaie ou écris-moi par email.", "error");
+        }
+      })
+      .catch(() => setStatus("Échec de l'envoi, réessaie ou écris-moi par email.", "error"))
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false;
+      });
+  });
 }

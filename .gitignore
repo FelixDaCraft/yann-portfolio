@@ -19,6 +19,11 @@ Thumbs.db
 *.swp
 *.log
 
+# SQLite (API locale — en prod la DB vit dans le volume Docker)
+*.db
+*.db-wal
+*.db-shm
+
 # Test
 coverage/
 
