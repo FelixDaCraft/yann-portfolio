@@ -183,8 +183,13 @@
           <div class="dv-val">Cabinet Psy</div>
           <div class="dv-key">Site client · Magalie Kerveadou · Next.js + Prisma</div>
         </div>
+        <div class="dv-stat" style="--h: 0.92">
+          <div class="dv-bar"></div>
+          <div class="dv-val">JLLM</div>
+          <div class="dv-key">RAG souverain · Mistral · BGE-M3 + Qdrant · bêta</div>
+        </div>
       </div>
-      <h2 class="word platine">4 EN PROD.</h2>
+      <h2 class="word platine">5 EN PROD.</h2>
     </section>
 
     <!-- ============================================ -->
@@ -327,10 +332,45 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- 09 — Path · Timeline (parcours réel depuis 2016) -->
+    <!-- 09 — JLLM (sticky pivot · 200dvh)             -->
+    <!-- ============================================ -->
+    <div class="pivot-wrapper">
+    <section class="chapter chapter--case chapter--pivot" data-track="jllm">
+      <div class="chapter__num">09 · Case study 05</div>
+      <h2 class="word">JLLM.</h2>
+      <p class="case-lead">Un LLM qui ne peut pas mentir sur un programme politique — parce qu'il ne répond que depuis le texte.</p>
+      <div class="pivot-stack">
+        <div class="pivot-line" data-line="0">
+          Assistant IA sur le programme <span class="em">l'Avenir en commun</span> : chaque réponse est
+          <span class="em-sauge">sourcée, citée (chapitre · section)</span> et vérifiable — 99 % de fidélité au texte,
+          zéro invention.
+        </div>
+        <div class="pivot-line" data-line="1">
+          <span class="em">RAG hybride</span> : BGE-M3 (dense + sparse + ColBERT) → Qdrant (fusion RRF) → reranking ColBERT →
+          génération encadrée par <span class="em-sauge">Mistral</span> (souverain, temp. 0). Refus systématique du
+          hors-programme (7/7 aux tests d'injection). ~0 €/mois, opéré sur mon homelab.
+        </div>
+        <div class="pivot-line" data-line="2">
+          <ul class="stack-logos">
+            <li><img src="https://cdn.simpleicons.org/python/c0c0c8" alt="" /> Python</li>
+            <li><img src="https://cdn.simpleicons.org/fastapi/c0c0c8" alt="" /> FastAPI</li>
+            <li><img src="https://cdn.simpleicons.org/qdrant/c0c0c8" alt="" /> Qdrant</li>
+            <li><img src="https://cdn.simpleicons.org/huggingface/c0c0c8" alt="" /> BGE-M3</li>
+            <li><img src="https://cdn.simpleicons.org/mistralai/c0c0c8" alt="" /> Mistral</li>
+            <li><img src="https://cdn.simpleicons.org/docker/c0c0c8" alt="" /> Docker</li>
+            <li><img src="https://cdn.simpleicons.org/cloudflare/c0c0c8" alt="" /> Cloudflare Tunnel</li>
+          </ul>
+          <br/>Bêta live · <a href="https://avenir.aynn.fr" target="_blank" rel="noopener" data-cursor="view">avenir.aynn.fr ↗</a>.
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- 10 — Path · Timeline (parcours réel depuis 2016) -->
     <!-- ============================================ -->
     <section id="path" class="chapter chapter--tl">
-      <div class="chapter__num">09 · Path</div>
+      <div class="chapter__num">10 · Path</div>
       <h2 class="word">10 ANS DE CRAFT.</h2>
       <table class="tech-table">
         <tr>
