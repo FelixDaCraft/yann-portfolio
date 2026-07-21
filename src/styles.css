@@ -494,8 +494,8 @@
   .chapter--dv .dv-stats {
     align-self: end;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0 1.25rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0 1rem;
     padding: 0 0 6rem;
     height: 60%;
     align-content: end;
