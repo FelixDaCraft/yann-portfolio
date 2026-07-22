@@ -6,9 +6,9 @@
 <!--
   Source du CV téléchargeable (public/cv-yann-maillot.pdf).
   Format « dossier de compétences » multi-pages :
-    p.1-3  expérience détaillée (blocs Client/Contexte/Rôle/Tâches)
-    p.4-6  projets en production — détail
-    p.7    synthèse (présentation, résumé expérience & projets, sidebar)
+    p.1    synthèse (présentation, résumé expérience & projets, sidebar)
+    p.2-4  expérience détaillée (blocs Client/Contexte/Rôle/Tâches)
+    p.5-7  projets en production — détail
   Régénérer le PDF après modification (nom versionné = contourne le cache Cloudflare) :
     chrome --headless=new --disable-gpu --no-pdf-header-footer --virtual-time-budget=15000 \
       --print-to-pdf=public/cv-yann-maillot-2026.pdf cv/cv-yann-maillot.html
@@ -133,336 +133,12 @@
 <body>
 
 <!-- ================================================== -->
-<!-- PAGE 1 — EXPÉRIENCE DÉTAILLÉE (1/3)                 -->
+<!-- PAGE 1 — SYNTHÈSE                   -->
 <!-- ================================================== -->
 <div class="page">
   <div class="band band-top"></div><div class="band band-top2"></div>
   <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
   <div class="pagenum">1</div>
-
-  <div class="sec-title">Expérience détaillée</div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Freelance — produits propres &amp; missions client</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">SaaS · Web · IA appliquée · Self-hosting</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Août 2023 → aujourd'hui</div></div>
-    <div class="row"><div class="lbl">Équipe</div><div class="val">Solo — en lien direct avec les clients et les utilisateurs</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Conception et opération de bout en bout de <strong>5 produits en production</strong> (détaillés
-      dans la section « Projets en production »), hébergés sur une infrastructure self-hosted administrée en propre
-      (serveurs Linux/Debian, Docker, tunnels Cloudflare). Chaque produit est déployé en continu :
-      un push sur main déclenche typecheck, tests, build Docker, migration de schéma et mise en prod.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur fullstack senior — de l'architecture à la production</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Architecture applicative (Next.js App Router / RSC, tRPC, APIs Node) et modélisation PostgreSQL (Drizzle, Prisma)</li>
-      <li>Authentification (Better Auth, sessions signées HMAC), paiements Stripe (checkout, webhooks), multi-tenancy</li>
-      <li>Pipelines CI/CD GitHub Actions sur runners self-hosted : typecheck, tests, build, migrations, healthchecks</li>
-      <li>Conteneurisation Docker et exposition via Cloudflare Tunnel (TLS au bord, ingress par sous-domaine)</li>
-      <li>Qualité : TypeScript strict, tests Vitest et Playwright, documentation opérationnelle de passation</li>
-      <li>Sites et outils clients livrés clé en main (cabinet de psychologue, questionnaires d'étude de marché…)</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">TypeScript · Next.js · React · Node.js · PostgreSQL · Docker · GitHub Actions · Cloudflare</div></div>
-    <div class="row"><div class="lbl">Autres</div><div class="val">5 produits live — cf. section « Projets en production »</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Platinum CBD — Association loi 1901</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Événementiel · Filière CBD</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Juillet 2022 → aujourd'hui</div></div>
-    <div class="row"><div class="lbl">Équipe</div><div class="val">Bureau de l'association — co-fondateur</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">L'association organise <strong>Cann'Agri Expo</strong> (salon professionnel) et la
-      <strong>Platinum CBD Cup</strong> (concours national jugé par un jury professionnel et un jury public).
-      Le pilotage des concours exigeait un outil dédié : inscriptions, paiements, anonymisation,
-      notation, palmarès — d'où la conception de la plateforme CupMetrics.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Co-fondateur · concepteur et développeur de la plateforme événementielle</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Co-organisation des éditions : producteurs, jurys, expositions, remises de prix</li>
-      <li>Conception et développement de CupMetrics, le SaaS qui pilote les concours (cf. section projets)</li>
-      <li>Opération des éditions sur la plateforme : inscriptions → paiement → anonymisation → notation → publication des palmarès</li>
-      <li>Site vitrine des résultats et widget de palmarès embarquable</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">cf. projet CupMetrics — section « Projets en production »</div></div>
-    <div class="row"><div class="lbl">Autres</div><div class="val"><a href="https://github.com/FelixDaCraft/platinum-cbd-cup">github.com/FelixDaCraft/platinum-cbd-cup ↗</a></div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 2 — EXPÉRIENCE DÉTAILLÉE (2/3)                 -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
-  <div class="pagenum">2</div>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Accenture France — Nantes</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Conseil &amp; services numériques (ESN)</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2022 – juillet 2023 · CDI · 1 an et 3 mois</div></div>
-    <div class="row"><div class="lbl">Équipe</div><div class="val">Équipe delivery Salesforce — projet grand compte</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Après une spécialisation Développeur Salesforce (WebForce3), intégration à une équipe
-      delivery Accenture sur un projet grand compte : développements custom et maintenance évolutive
-      sur la plateforme Salesforce.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Salesforce</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Développements custom sur la plateforme Salesforce (Apex, Lightning Web Components, SOQL)</li>
-      <li>Automatisations déclaratives des processus métier avec Salesforce Flow</li>
-      <li>Traduction des besoins métier en solutions plateforme, en lien avec les équipes fonctionnelles</li>
-      <li>Correctifs, maintenance évolutive et recette en cycle agile</li>
-      <li>Vulgarisation technique et accompagnement d'utilisateurs non experts</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Salesforce · Apex · Lightning Web Components · SOQL · Flows · Git</div></div>
-    <div class="row"><div class="lbl">Autres</div><div class="val">Méthodologie agile</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Francecom — Rezé (Nantes)</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Agence digitale — hôtellerie de plein air</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2021 – avril 2022 · freelance · 1 an</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Francecom est une agence digitale fondée en 1997 à Rezé (agglomération nantaise),
-      spécialisée dans l'<strong>hôtellerie de plein air</strong> : sites de campings, référencement SEO / SEA,
-      outils de réservation dédiés et applications mobiles pour un portefeuille national de clients.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur full-stack</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Développement front et back de sites et d'outils web pour les clients de l'agence</li>
-      <li>Intégration de maquettes, développement de fonctionnalités sur l'existant</li>
-      <li>Mises en ligne, corrections et évolutions en lien avec les chefs de projet</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">JavaScript · PHP · HTML / CSS · MySQL</div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 3 — EXPÉRIENCE DÉTAILLÉE (3/3)                 -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
-  <div class="pagenum">3</div>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Yunow (ex-biinlab) — Villeurbanne (Lyon)</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Éditeur SaaS — applications tactiles &amp; interactives</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Juin 2020 – septembre 2020 · freelance · 4 mois</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Yunow (ex-biinlab, créé en 2011) édite une plateforme SaaS <strong>no-code de création
-      d'applications tactiles et interactives</strong> — bornes, tables multitouch, tablettes, web : guides de
-      visite, cartes interactives, jeux — utilisée par plus de 200 grands comptes et institutions
-      culturelles (RATP, Philharmonie de Paris, Crédit Agricole…). Développements sur la plateforme
-      et son back-office <strong>Symfony</strong>.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Symfony</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Développement de fonctionnalités Symfony : contrôleurs, entités Doctrine, vues Twig</li>
-      <li>Correctifs et évolutions sur la plateforme existante, participation aux mises en production</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">PHP · Symfony · Doctrine · Twig · jQuery · MySQL</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>420 Green Road</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">E-commerce · CBD</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Janvier 2020 – juillet 2020 · freelance · 7 mois</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">420 Green Road est un e-commerçant pionnier du CBD en France, avec l'un des catalogues
-      les plus riches du marché (produits testés en laboratoire indépendant). Au-delà de la boutique en
-      ligne, l'entreprise voulait ouvrir un <strong>canal de vente dropshipping</strong> pour des revendeurs
-      partenaires — avec des stocks toujours justes.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur e-commerce</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Mise en place d'un système d'intégrations permettant à des <strong>dropshippers</strong> de se connecter et de vendre les produits de l'entreprise</li>
-      <li>Synchronisation des stocks entre l'ERP <strong>Dolibarr</strong> et les boutiques <strong>WordPress</strong> des revendeurs</li>
-      <li>Développement et personnalisation de la boutique : thème, modules, catalogue, moyens de paiement</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Prestashop · WordPress / WooCommerce · Dolibarr · PHP · MySQL</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>SQLI — mission La Banque Postale</strong></div></div>
-    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">ESN digitale · Banque</div></div>
-    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2019 · temps plein · 1 mois</div></div>
-    <div class="row"><div class="lbl">Équipe</div><div class="val">Équipe de maintenance applicative — Nantes</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">SQLI est une ESN européenne spécialisée dans l'expérience digitale ; son agence
-      nantaise accompagne de grands comptes régionaux et nationaux, du cadrage du besoin à la mise en
-      production. Mission de maintenance applicative <strong>Java / JEE</strong> pour La Banque Postale.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Java / Java EE</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Maintenance corrective et évolutive d'applications Java / JEE (Java, JSP, JavaScript)</li>
-      <li>Analyse de logs et supervision applicative avec Splunk, suivi des tickets sous Jira</li>
-      <li>Participation aux livraisons et à la recette en méthode agile</li>
-      <li>Formation Angular suivie en interne</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Java · JEE · JSP · JavaScript · SQL · Splunk · Jira · IntelliJ</div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 4 — PROJETS EN PRODUCTION (1/3)                -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
-  <div class="pagenum">4</div>
-
-  <div class="sec-title">Projets en production — détail</div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>CupMetrics · Platinum CBD Cup</strong> — <a href="https://github.com/FelixDaCraft/platinum-cbd-cup">github.com/FelixDaCraft/platinum-cbd-cup ↗</a></div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">SaaS événementiel <strong>multi-tenant</strong> + fork standalone single-tenant en production</div></div>
-    <div class="row"><div class="lbl">Statut</div><div class="val">En production — éditions 2023 → 2026 (jury pro &amp; jury public)</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Un concours de produits doit être jugé à l'aveugle. CupMetrics gère un concours de A à Z
-      (inscriptions producteurs, paiements, espaces organisateur / jury / producteur, prix, expositions) avec une
-      <strong>anonymisation déclenchée au paiement Stripe</strong> : chaque produit reçoit un code généré
-      (initiales de catégorie + numéro unique en base) — les jurés ne voient que le code, jamais le producteur.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Architecture multi-tenant : organisations, concours, catégories, produits, notations</li>
-      <li>Intégration Stripe (checkout, webhooks) déclenchant l'anonymisation des produits</li>
-      <li>Espaces organisateur (résultats, règles de publication), jury (notation) et producteur (labels, résultats)</li>
-      <li>Moteur de résultats : scores, rangs par catégorie, labels par seuil, podium, Best in Show, statut « disqualifié » (anti-triche)</li>
-      <li>Génération PDF de synthèse, widget de palmarès embarquable, vitrine 3D (Three.js / R3F)</li>
-      <li>~426 tests Vitest + Playwright ; CI/CD GitHub Actions (runner self-hosted) → build Docker → migration → mise en prod</li>
-      <li>Fork standalone Platinum CBD Cup et script de migration des données depuis le SaaS parent</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Next.js 15 · React 19 · TypeScript · tRPC · Drizzle · PostgreSQL · Stripe · Better Auth · Three.js / R3F · Tailwind · Radix UI · Docker</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>JLLM</strong> — <a href="https://github.com/FelixDaCraft/JLLM">github.com/FelixDaCraft/JLLM ↗</a> (bêta)</div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">Assistant <strong>RAG souverain</strong> sur le programme <em>l'Avenir en commun</em></div></div>
-    <div class="row"><div class="lbl">Statut</div><div class="val">Bêta publique — opéré sur homelab</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Un LLM qui ne peut pas inventer : chaque réponse est générée uniquement depuis le texte du
-      programme, <strong>sourcée et citée (chapitre · section)</strong>, vérifiable. 99 % de fidélité mesurée au texte,
-      refus systématique du hors-programme (7/7 aux tests d'injection).</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Ingestion et découpage du programme en chunks sourcés (chapitre · section)</li>
-      <li>Retrieval hybride : embeddings BGE-M3 (dense + sparse + ColBERT) → Qdrant, fusion RRF</li>
-      <li>Reranking ColBERT puis génération encadrée par Mistral (souverain, température 0)</li>
-      <li>Garde-fous anti-hallucination et anti-injection, avec jeu de tests dédié</li>
-      <li>API FastAPI + interface de chat ; conteneurisation Docker ; exposition via Cloudflare Tunnel</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Python · FastAPI · Qdrant · BGE-M3 · Mistral · Docker · Cloudflare Tunnel</div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 5 — PROJETS EN PRODUCTION (2/3)                -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
-  <div class="pagenum">5</div>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>BabyMonitor</strong> — <a href="https://github.com/FelixDaCraft/v308-rtsp-hack">github.com/FelixDaCraft/v308-rtsp-hack ↗</a></div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">PWA self-hostée de surveillance bébé — <strong>reverse engineering</strong> + ML embarqué</div></div>
-    <div class="row"><div class="lbl">Statut</div><div class="val">En production — utilisé chaque nuit, opéré sur homelab</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Une caméra IP Xiaovv sans flux ouvert ni app fiable : j'ai démonté son protocole
-      propriétaire — <strong>V308 sur TCP:8800, chiffrement AES-128-ECB</strong> — pour en faire une PWA de
-      surveillance en temps réel, avec détection des pleurs par ML et notifications critiques sur iOS.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Reverse engineering, développement et exploitation — en autonomie complète</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Reverse engineering du protocole (Ghidra / Frida) : handshake, chiffrement AES-128-ECB, framing vidéo</li>
-      <li>Décodage H.264 / HEVC et restreaming via go2rtc / ffmpeg</li>
-      <li>Détection ML embarquée des pleurs : YAMNet TFLite (classification audio AudioSet)</li>
-      <li>Notifications : Web Push PWA qui perce le mode silencieux iOS, fallback ntfy</li>
-      <li>Backend Node Express + better-sqlite3, conteneurisation Docker, reverse proxy Traefik</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Python · YAMNet TFLite · Node Express · better-sqlite3 · go2rtc / ffmpeg · PWA Web Push · Docker · Traefik</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>Ringdo</strong> — <a href="https://github.com/FelixDaCraft/RingDo">github.com/FelixDaCraft/RingDo ↗</a></div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">App Android native + backend self-hosted — <strong>STT et journalisation LLM</strong> des appels</div></div>
-    <div class="row"><div class="lbl">Statut</div><div class="val">En production — opéré sur homelab</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Journaliser automatiquement chaque appel téléphonique : une app Android native surveille en
-      silence le dossier d'enregistrements d'appels et <strong>upload chaque nouveau fichier</strong> vers un backend
-      self-hosted qui transcrit puis structure l'appel.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>App Android native (Java) : service de surveillance du dossier d'enregistrements, upload résilient</li>
-      <li>Backend Node + PostgreSQL : ingestion, stockage, API</li>
-      <li>Speech-to-text Mistral sur l'audio brut, puis journalisation structurée par LLM (date, durée, interlocuteurs, résumé, sujets)</li>
-      <li>Recherche full-text dans l'historique des appels</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Android natif · Java · Node.js · PostgreSQL · Mistral (STT + LLM) · Docker</div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 6 — PROJETS EN PRODUCTION (3/3) + SOCLE        -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
-  <div class="pagenum">6</div>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>Cabinet Psychologue</strong> — <a href="https://github.com/FelixDaCraft/psy-cabinet">github.com/FelixDaCraft/psy-cabinet ↗</a></div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">Site client livré clé en main — vitrine + back-office</div></div>
-    <div class="row"><div class="lbl">Statut</div><div class="val">En production</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Site livré pour Magalie Kerveadou, psychologue clinicienne spécialisée dans l'enfance et
-      l'adolescence — cabinet à Milizac (Finistère). Objectif : visibilité locale et
-      <strong>autonomie complète de la cliente</strong> sur son contenu.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement, livraison et maintenance</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Pages thématiques (anxiété, deuil, accompagnement enfants / ados), prise de RDV, formulaire de contact, mentions légales</li>
-      <li>SEO local Brest / Finistère : données structurées, contenus ciblés, performances</li>
-      <li>Back-office Prisma : édition autonome du contenu par la cliente, sans toucher au code</li>
-      <li>Déploiement Docker et maintenance en continu</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Next.js · React · TypeScript · Prisma · Tailwind · Docker</div></div>
-  </section>
-
-  <div class="spacer"></div>
-
-  <section class="blk">
-    <div class="row"><div class="lbl">SOCLE</div><div class="val"><strong>Infrastructure de production self-hosted</strong></div></div>
-    <div class="row"><div class="lbl">Type</div><div class="val">Homelab + VPS — socle d'hébergement et de déploiement des 5 produits</div></div>
-    <div class="row"><div class="lbl">Contexte technique</div><div class="val">L'ensemble des produits tourne sur une infrastructure administrée en propre : serveurs Linux
-      (Debian) et VPS, orchestrés en Docker Compose. L'exposition publique passe par <strong>Cloudflare Tunnel</strong>
-      (TLS au bord, zéro port ouvert). Chaque dépôt GitHub dispose de son runner CI self-hosted :
-      <strong>un push sur main = typecheck, tests, build, migration, déploiement, healthcheck</strong>.</div></div>
-    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Administration système, CI/CD et exploitation</div></div>
-    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
-      <li>Administration Linux (Debian), Docker / Docker Compose, virtualisation KVM</li>
-      <li>Runners GitHub Actions self-hosted par projet, pipelines de déploiement déclenchés au push</li>
-      <li>Ingress Cloudflare Tunnel par sous-domaine, DNS, TLS au bord</li>
-      <li>PostgreSQL par application, sauvegardes, supervision et remédiation</li>
-    </ul></div></div>
-    <div class="row"><div class="lbl">Stack technique</div><div class="val">Debian · Docker Compose · KVM · GitHub Actions · Cloudflare Tunnel · PostgreSQL · Nginx / Traefik</div></div>
-  </section>
-</div>
-
-<!-- ================================================== -->
-<!-- PAGE 7 — SYNTHÈSE (dernière page)                   -->
-<!-- ================================================== -->
-<div class="page">
-  <div class="band band-top"></div><div class="band band-top2"></div>
-  <div class="band band-bot"></div><div class="band band-bot2"></div>
-  <div class="pagenum">7</div>
 
   <header class="head">
     <img class="photo" src="../public/yann.jpg" alt="Yann Maillot">
@@ -573,6 +249,330 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 2 — EXPÉRIENCE DÉTAILLÉE (1/3)                 -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">2</div>
+
+  <div class="sec-title">Expérience détaillée</div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Freelance — produits propres &amp; missions client</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">SaaS · Web · IA appliquée · Self-hosting</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Août 2023 → aujourd'hui</div></div>
+    <div class="row"><div class="lbl">Équipe</div><div class="val">Solo — en lien direct avec les clients et les utilisateurs</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Conception et opération de bout en bout de <strong>5 produits en production</strong> (détaillés
+      dans la section « Projets en production »), hébergés sur une infrastructure self-hosted administrée en propre
+      (serveurs Linux/Debian, Docker, tunnels Cloudflare). Chaque produit est déployé en continu :
+      un push sur main déclenche typecheck, tests, build Docker, migration de schéma et mise en prod.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur fullstack senior — de l'architecture à la production</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Architecture applicative (Next.js App Router / RSC, tRPC, APIs Node) et modélisation PostgreSQL (Drizzle, Prisma)</li>
+      <li>Authentification (Better Auth, sessions signées HMAC), paiements Stripe (checkout, webhooks), multi-tenancy</li>
+      <li>Pipelines CI/CD GitHub Actions sur runners self-hosted : typecheck, tests, build, migrations, healthchecks</li>
+      <li>Conteneurisation Docker et exposition via Cloudflare Tunnel (TLS au bord, ingress par sous-domaine)</li>
+      <li>Qualité : TypeScript strict, tests Vitest et Playwright, documentation opérationnelle de passation</li>
+      <li>Sites et outils clients livrés clé en main (cabinet de psychologue, questionnaires d'étude de marché…)</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">TypeScript · Next.js · React · Node.js · PostgreSQL · Docker · GitHub Actions · Cloudflare</div></div>
+    <div class="row"><div class="lbl">Autres</div><div class="val">5 produits live — cf. section « Projets en production »</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Platinum CBD — Association loi 1901</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Événementiel · Filière CBD</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Juillet 2022 → aujourd'hui</div></div>
+    <div class="row"><div class="lbl">Équipe</div><div class="val">Bureau de l'association — co-fondateur</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">L'association organise <strong>Cann'Agri Expo</strong> (salon professionnel) et la
+      <strong>Platinum CBD Cup</strong> (concours national jugé par un jury professionnel et un jury public).
+      Le pilotage des concours exigeait un outil dédié : inscriptions, paiements, anonymisation,
+      notation, palmarès — d'où la conception de la plateforme CupMetrics.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Co-fondateur · concepteur et développeur de la plateforme événementielle</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Co-organisation des éditions : producteurs, jurys, expositions, remises de prix</li>
+      <li>Conception et développement de CupMetrics, le SaaS qui pilote les concours (cf. section projets)</li>
+      <li>Opération des éditions sur la plateforme : inscriptions → paiement → anonymisation → notation → publication des palmarès</li>
+      <li>Site vitrine des résultats et widget de palmarès embarquable</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">cf. projet CupMetrics — section « Projets en production »</div></div>
+    <div class="row"><div class="lbl">Autres</div><div class="val"><a href="https://github.com/FelixDaCraft/platinum-cbd-cup">github.com/FelixDaCraft/platinum-cbd-cup ↗</a></div></div>
+  </section>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 3 — EXPÉRIENCE DÉTAILLÉE (2/3)                 -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">3</div>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Accenture France — Nantes</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Conseil &amp; services numériques (ESN)</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2022 – juillet 2023 · CDI · 1 an et 3 mois</div></div>
+    <div class="row"><div class="lbl">Équipe</div><div class="val">Équipe delivery Salesforce — projet grand compte</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Après une spécialisation Développeur Salesforce (WebForce3), intégration à une équipe
+      delivery Accenture sur un projet grand compte : développements custom et maintenance évolutive
+      sur la plateforme Salesforce.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Salesforce</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Développements custom sur la plateforme Salesforce (Apex, Lightning Web Components, SOQL)</li>
+      <li>Automatisations déclaratives des processus métier avec Salesforce Flow</li>
+      <li>Traduction des besoins métier en solutions plateforme, en lien avec les équipes fonctionnelles</li>
+      <li>Correctifs, maintenance évolutive et recette en cycle agile</li>
+      <li>Vulgarisation technique et accompagnement d'utilisateurs non experts</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Salesforce · Apex · Lightning Web Components · SOQL · Flows · Git</div></div>
+    <div class="row"><div class="lbl">Autres</div><div class="val">Méthodologie agile</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Francecom — Rezé (Nantes)</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Agence digitale — hôtellerie de plein air</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2021 – avril 2022 · freelance · 1 an</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Francecom est une agence digitale fondée en 1997 à Rezé (agglomération nantaise),
+      spécialisée dans l'<strong>hôtellerie de plein air</strong> : sites de campings, référencement SEO / SEA,
+      outils de réservation dédiés et applications mobiles pour un portefeuille national de clients.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur full-stack</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Développement front et back de sites et d'outils web pour les clients de l'agence</li>
+      <li>Intégration de maquettes, développement de fonctionnalités sur l'existant</li>
+      <li>Mises en ligne, corrections et évolutions en lien avec les chefs de projet</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">JavaScript · PHP · HTML / CSS · MySQL</div></div>
+  </section>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 4 — EXPÉRIENCE DÉTAILLÉE (3/3)                 -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">4</div>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>Yunow (ex-biinlab) — Villeurbanne (Lyon)</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">Éditeur SaaS — applications tactiles &amp; interactives</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Juin 2020 – septembre 2020 · freelance · 4 mois</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Yunow (ex-biinlab, créé en 2011) édite une plateforme SaaS <strong>no-code de création
+      d'applications tactiles et interactives</strong> — bornes, tables multitouch, tablettes, web : guides de
+      visite, cartes interactives, jeux — utilisée par plus de 200 grands comptes et institutions
+      culturelles (RATP, Philharmonie de Paris, Crédit Agricole…). Développements sur la plateforme
+      et son back-office <strong>Symfony</strong>.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Symfony</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Développement de fonctionnalités Symfony : contrôleurs, entités Doctrine, vues Twig</li>
+      <li>Correctifs et évolutions sur la plateforme existante, participation aux mises en production</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">PHP · Symfony · Doctrine · Twig · jQuery · MySQL</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>420 Green Road</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">E-commerce · CBD</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Janvier 2020 – juillet 2020 · freelance · 7 mois</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">420 Green Road est un e-commerçant pionnier du CBD en France, avec l'un des catalogues
+      les plus riches du marché (produits testés en laboratoire indépendant). Au-delà de la boutique en
+      ligne, l'entreprise voulait ouvrir un <strong>canal de vente dropshipping</strong> pour des revendeurs
+      partenaires — avec des stocks toujours justes.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur e-commerce</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Mise en place d'un système d'intégrations permettant à des <strong>dropshippers</strong> de se connecter et de vendre les produits de l'entreprise</li>
+      <li>Synchronisation des stocks entre l'ERP <strong>Dolibarr</strong> et les boutiques <strong>WordPress</strong> des revendeurs</li>
+      <li>Développement et personnalisation de la boutique : thème, modules, catalogue, moyens de paiement</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Prestashop · WordPress / WooCommerce · Dolibarr · PHP · MySQL</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">CLIENT</div><div class="val"><strong>SQLI — mission La Banque Postale</strong></div></div>
+    <div class="row"><div class="lbl">Secteur d'activité</div><div class="val">ESN digitale · Banque</div></div>
+    <div class="row"><div class="lbl">Durée de mission</div><div class="val">Mai 2019 · temps plein · 1 mois</div></div>
+    <div class="row"><div class="lbl">Équipe</div><div class="val">Équipe de maintenance applicative — Nantes</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">SQLI est une ESN européenne spécialisée dans l'expérience digitale ; son agence
+      nantaise accompagne de grands comptes régionaux et nationaux, du cadrage du besoin à la mise en
+      production. Mission de maintenance applicative <strong>Java / JEE</strong> pour La Banque Postale.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Développeur Java / Java EE</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Maintenance corrective et évolutive d'applications Java / JEE (Java, JSP, JavaScript)</li>
+      <li>Analyse de logs et supervision applicative avec Splunk, suivi des tickets sous Jira</li>
+      <li>Participation aux livraisons et à la recette en méthode agile</li>
+      <li>Formation Angular suivie en interne</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Java · JEE · JSP · JavaScript · SQL · Splunk · Jira · IntelliJ</div></div>
+  </section>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 5 — PROJETS EN PRODUCTION (1/3)                -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">5</div>
+
+  <div class="sec-title">Projets en production — détail</div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>CupMetrics · Platinum CBD Cup</strong> — <a href="https://github.com/FelixDaCraft/platinum-cbd-cup">github.com/FelixDaCraft/platinum-cbd-cup ↗</a></div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">SaaS événementiel <strong>multi-tenant</strong> + fork standalone single-tenant en production</div></div>
+    <div class="row"><div class="lbl">Statut</div><div class="val">En production — éditions 2023 → 2026 (jury pro &amp; jury public)</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Un concours de produits doit être jugé à l'aveugle. CupMetrics gère un concours de A à Z
+      (inscriptions producteurs, paiements, espaces organisateur / jury / producteur, prix, expositions) avec une
+      <strong>anonymisation déclenchée au paiement Stripe</strong> : chaque produit reçoit un code généré
+      (initiales de catégorie + numéro unique en base) — les jurés ne voient que le code, jamais le producteur.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Architecture multi-tenant : organisations, concours, catégories, produits, notations</li>
+      <li>Intégration Stripe (checkout, webhooks) déclenchant l'anonymisation des produits</li>
+      <li>Espaces organisateur (résultats, règles de publication), jury (notation) et producteur (labels, résultats)</li>
+      <li>Moteur de résultats : scores, rangs par catégorie, labels par seuil, podium, Best in Show, statut « disqualifié » (anti-triche)</li>
+      <li>Génération PDF de synthèse, widget de palmarès embarquable, vitrine 3D (Three.js / R3F)</li>
+      <li>~426 tests Vitest + Playwright ; CI/CD GitHub Actions (runner self-hosted) → build Docker → migration → mise en prod</li>
+      <li>Fork standalone Platinum CBD Cup et script de migration des données depuis le SaaS parent</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Next.js 15 · React 19 · TypeScript · tRPC · Drizzle · PostgreSQL · Stripe · Better Auth · Three.js / R3F · Tailwind · Radix UI · Docker</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>JLLM</strong> — <a href="https://github.com/FelixDaCraft/JLLM">github.com/FelixDaCraft/JLLM ↗</a> (bêta)</div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">Assistant <strong>RAG souverain</strong> sur le programme <em>l'Avenir en commun</em></div></div>
+    <div class="row"><div class="lbl">Statut</div><div class="val">Bêta publique — opéré sur homelab</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Un LLM qui ne peut pas inventer : chaque réponse est générée uniquement depuis le texte du
+      programme, <strong>sourcée et citée (chapitre · section)</strong>, vérifiable. 99 % de fidélité mesurée au texte,
+      refus systématique du hors-programme (7/7 aux tests d'injection).</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Ingestion et découpage du programme en chunks sourcés (chapitre · section)</li>
+      <li>Retrieval hybride : embeddings BGE-M3 (dense + sparse + ColBERT) → Qdrant, fusion RRF</li>
+      <li>Reranking ColBERT puis génération encadrée par Mistral (souverain, température 0)</li>
+      <li>Garde-fous anti-hallucination et anti-injection, avec jeu de tests dédié</li>
+      <li>API FastAPI + interface de chat ; conteneurisation Docker ; exposition via Cloudflare Tunnel</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Python · FastAPI · Qdrant · BGE-M3 · Mistral · Docker · Cloudflare Tunnel</div></div>
+  </section>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 6 — PROJETS EN PRODUCTION (2/3)                -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">6</div>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>BabyMonitor</strong> — <a href="https://github.com/FelixDaCraft/v308-rtsp-hack">github.com/FelixDaCraft/v308-rtsp-hack ↗</a></div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">PWA self-hostée de surveillance bébé — <strong>reverse engineering</strong> + ML embarqué</div></div>
+    <div class="row"><div class="lbl">Statut</div><div class="val">En production — utilisé chaque nuit, opéré sur homelab</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Une caméra IP Xiaovv sans flux ouvert ni app fiable : j'ai démonté son protocole
+      propriétaire — <strong>V308 sur TCP:8800, chiffrement AES-128-ECB</strong> — pour en faire une PWA de
+      surveillance en temps réel, avec détection des pleurs par ML et notifications critiques sur iOS.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Reverse engineering, développement et exploitation — en autonomie complète</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Reverse engineering du protocole (Ghidra / Frida) : handshake, chiffrement AES-128-ECB, framing vidéo</li>
+      <li>Décodage H.264 / HEVC et restreaming via go2rtc / ffmpeg</li>
+      <li>Détection ML embarquée des pleurs : YAMNet TFLite (classification audio AudioSet)</li>
+      <li>Notifications : Web Push PWA qui perce le mode silencieux iOS, fallback ntfy</li>
+      <li>Backend Node Express + better-sqlite3, conteneurisation Docker, reverse proxy Traefik</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Python · YAMNet TFLite · Node Express · better-sqlite3 · go2rtc / ffmpeg · PWA Web Push · Docker · Traefik</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>Ringdo</strong> — <a href="https://github.com/FelixDaCraft/RingDo">github.com/FelixDaCraft/RingDo ↗</a></div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">App Android native + backend self-hosted — <strong>STT et journalisation LLM</strong> des appels</div></div>
+    <div class="row"><div class="lbl">Statut</div><div class="val">En production — opéré sur homelab</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Journaliser automatiquement chaque appel téléphonique : une app Android native surveille en
+      silence le dossier d'enregistrements d'appels et <strong>upload chaque nouveau fichier</strong> vers un backend
+      self-hosted qui transcrit puis structure l'appel.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement et exploitation — en autonomie complète</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>App Android native (Java) : service de surveillance du dossier d'enregistrements, upload résilient</li>
+      <li>Backend Node + PostgreSQL : ingestion, stockage, API</li>
+      <li>Speech-to-text Mistral sur l'audio brut, puis journalisation structurée par LLM (date, durée, interlocuteurs, résumé, sujets)</li>
+      <li>Recherche full-text dans l'historique des appels</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Android natif · Java · Node.js · PostgreSQL · Mistral (STT + LLM) · Docker</div></div>
+  </section>
+</div>
+
+<!-- ================================================== -->
+<!-- PAGE 7 — PROJETS EN PRODUCTION (3/3) + SOCLE        -->
+<!-- ================================================== -->
+<div class="page">
+  <div class="band band-top"></div><div class="band band-top2"></div>
+  <div class="band band-bot"></div><div class="band band-bot2"></div>
+  <div class="running">Yann Maillot — Développeur Fullstack Senior</div>
+  <div class="pagenum">7</div>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">PROJET</div><div class="val"><strong>Cabinet Psychologue</strong> — <a href="https://github.com/FelixDaCraft/psy-cabinet">github.com/FelixDaCraft/psy-cabinet ↗</a></div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">Site client livré clé en main — vitrine + back-office</div></div>
+    <div class="row"><div class="lbl">Statut</div><div class="val">En production</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">Site livré pour Magalie Kerveadou, psychologue clinicienne spécialisée dans l'enfance et
+      l'adolescence — cabinet à Milizac (Finistère). Objectif : visibilité locale et
+      <strong>autonomie complète de la cliente</strong> sur son contenu.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Conception, développement, livraison et maintenance</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Pages thématiques (anxiété, deuil, accompagnement enfants / ados), prise de RDV, formulaire de contact, mentions légales</li>
+      <li>SEO local Brest / Finistère : données structurées, contenus ciblés, performances</li>
+      <li>Back-office Prisma : édition autonome du contenu par la cliente, sans toucher au code</li>
+      <li>Déploiement Docker et maintenance en continu</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Next.js · React · TypeScript · Prisma · Tailwind · Docker</div></div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <section class="blk">
+    <div class="row"><div class="lbl">SOCLE</div><div class="val"><strong>Infrastructure de production self-hosted</strong></div></div>
+    <div class="row"><div class="lbl">Type</div><div class="val">Homelab + VPS — socle d'hébergement et de déploiement des 5 produits</div></div>
+    <div class="row"><div class="lbl">Contexte technique</div><div class="val">L'ensemble des produits tourne sur une infrastructure administrée en propre : serveurs Linux
+      (Debian) et VPS, orchestrés en Docker Compose. L'exposition publique passe par <strong>Cloudflare Tunnel</strong>
+      (TLS au bord, zéro port ouvert). Chaque dépôt GitHub dispose de son runner CI self-hosted :
+      <strong>un push sur main = typecheck, tests, build, migration, déploiement, healthcheck</strong>.</div></div>
+    <div class="row"><div class="lbl">Rôle au sein du projet</div><div class="val">Administration système, CI/CD et exploitation</div></div>
+    <div class="row"><div class="lbl">Tâches</div><div class="val"><ul class="tasks">
+      <li>Administration Linux (Debian), Docker / Docker Compose, virtualisation KVM</li>
+      <li>Runners GitHub Actions self-hosted par projet, pipelines de déploiement déclenchés au push</li>
+      <li>Ingress Cloudflare Tunnel par sous-domaine, DNS, TLS au bord</li>
+      <li>PostgreSQL par application, sauvegardes, supervision et remédiation</li>
+    </ul></div></div>
+    <div class="row"><div class="lbl">Stack technique</div><div class="val">Debian · Docker Compose · KVM · GitHub Actions · Cloudflare Tunnel · PostgreSQL · Nginx / Traefik</div></div>
+  </section>
 </div>
 
 </body>
