@@ -9,6 +9,8 @@ const adminRewrite = (): Plugin => ({
     server.middlewares.use((req, _res, next) => {
       if (req.url === "/admin" || req.url?.startsWith("/admin/") || req.url?.startsWith("/admin?")) {
         req.url = "/admin.html";
+      } else if (req.url === "/mentions-legales") {
+        req.url = "/mentions-legales.html";
       }
       next();
     });
@@ -40,6 +42,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         admin: resolve(import.meta.dirname, "admin.html"),
+        legal: resolve(import.meta.dirname, "mentions-legales.html"),
       },
       output: {
         assetFileNames: "assets/[name]-[hash][extname]",
